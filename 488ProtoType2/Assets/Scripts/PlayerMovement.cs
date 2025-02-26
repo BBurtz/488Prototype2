@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private InputAction MoveAction;
     private InputAction InteractAction;
     private InputAction JumpAction;
-    private InputAction ResetAction;
+    private InputAction AttackAction;
+    private InputAction RightAction;
     private InputAction PauseAction;
 
     private bool grounded;
@@ -81,12 +82,26 @@ public class PlayerMovement : MonoBehaviour
         MoveAction = playerControls.currentActionMap.FindAction("Move");
         InteractAction = playerControls.currentActionMap.FindAction("Interact");
         JumpAction = playerControls.currentActionMap.FindAction("Jump");
+        RightAction = playerControls.currentActionMap.FindAction("RightClick");
+        AttackAction = playerControls.currentActionMap.FindAction("Attack");
         PauseAction = playerControls.currentActionMap.FindAction("Pause");
         JumpAction.started += Jump;
         PauseAction.started += pause;
+        AttackAction.performed += LeftClick;
+        RightAction.performed += RightClick;
         MoveAction.performed += move;
         MoveAction.canceled += stop;
         InteractAction.started += interact;
+    }
+
+    private void RightClick(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void LeftClick(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
     }
 
     private void pause(InputAction.CallbackContext context)
@@ -119,6 +134,8 @@ public class PlayerMovement : MonoBehaviour
         MoveAction.canceled -= stop;
         PauseAction.started -= pause;
         InteractAction.started -= interact;
+        AttackAction.performed -= LeftClick;
+        RightAction.performed -= RightClick;
     }
 
 
