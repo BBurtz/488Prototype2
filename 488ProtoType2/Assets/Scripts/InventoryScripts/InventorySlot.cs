@@ -3,7 +3,8 @@
 *    Contributors: Elijah Vroman,
 *    Date Created: 5/20/24
 *    Description: A class for inventory slots that inventory system
-*    (basically a list of slots) uses. 
+*    (basically a list of slots) uses. A slot can have only one 
+*    item type at a time
 *******************************************************************/
 using UnityEngine;
 

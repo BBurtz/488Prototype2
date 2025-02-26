@@ -112,6 +112,7 @@ public class InventorySystem
             }
         }
 
+        //this will return false if there were no free slots found
         return addedAnyItems;
     }
     /// <summary>
