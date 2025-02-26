@@ -42,11 +42,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool grounded;
 
-    [ Tooltip("True if boxes move with pushing. False if 'E' is used to interact.")]
-    private bool pushToMoveBlocks = false;
-    [SerializeField, Tooltip("True if boxes freely move. False if grid system is used.")]
-    private bool boxesMoveFreely = false;
-
     [SerializeField] private LayerMask whatIsGround;
 
     private Rigidbody rb;
@@ -55,11 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     Coroutine movementcoroutineInstance;
 
-    private bool movementOverrideForTreadmill = false;      //A boolean storing whether the movement should be paused for treadmill movement
-    private Coroutine treadmillMovementCoroutine;       //Stores the treadmill movement coroutine while moving on it
     
 
-    public bool BoxesMoveFreely { get => boxesMoveFreely; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -89,10 +81,8 @@ public class PlayerMovement : MonoBehaviour
         MoveAction = playerControls.currentActionMap.FindAction("Move");
         InteractAction = playerControls.currentActionMap.FindAction("Interact");
         JumpAction = playerControls.currentActionMap.FindAction("Jump");
-        ResetAction = playerControls.currentActionMap.FindAction("Reload");
         PauseAction = playerControls.currentActionMap.FindAction("Pause");
         JumpAction.started += Jump;
-        ResetAction.started += Reload;
         PauseAction.started += pause;
         MoveAction.performed += move;
         MoveAction.canceled += stop;
@@ -125,22 +115,15 @@ public class PlayerMovement : MonoBehaviour
     {
         playerControls.DeactivateInput();
         JumpAction.started -= Jump;
-        ResetAction.started -= Reload;
         MoveAction.performed -= move;
         MoveAction.canceled -= stop;
         PauseAction.started -= pause;
         InteractAction.started -= interact;
     }
 
-    private void Reload(InputAction.CallbackContext context)
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
-    }
 
     private void FixedUpdate()
     {
-        if (!movementOverrideForTreadmill)
-        {
             if (!CurrentlyMoving)
             {
                 MoveVal = Vector3.zero;
@@ -156,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
             }
-        }
     }
 
     private void Jump(InputAction.CallbackContext context)
