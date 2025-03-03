@@ -8,8 +8,9 @@ public class Lootbox : MonoBehaviour, IInteractable
 
     //put this on every lootbox (duh)
 
-    private InventoryHolder inventoryHolder;
-    public InventoryItemData data;
+    //public InventoryItemData data;
+
+    bool isOpen = false;
 
     [Tooltip("What are the objects that you can get from this box?")]
     public List<ScriptableObject> ItemsInCrate = new List<ScriptableObject>();
@@ -20,7 +21,6 @@ public class Lootbox : MonoBehaviour, IInteractable
     private void Start()
     {
 
-        inventoryHolder = GetComponent<InventoryHolder>();
         Randomization();
 
     }
@@ -38,10 +38,25 @@ public class Lootbox : MonoBehaviour, IInteractable
 
     }
 
-    public void AddToInventory()
+    public void Interact(GameObject player)
     {
 
-        inventoryHolder.InventorySystem.AddToInventory(Item.GetComponent<InventoryItemData>(), 1, out _);
+        if(!isOpen)
+        {
+
+            isOpen = true;
+            Debug.Log("it's open! and it's a " + Item);
+
+        }
+        else
+        {
+
+            InventoryHolder myHolder = player.GetComponent<InventoryHolder>();
+            myHolder.InventorySystem.AddToInventory(Item.GetComponent<InventoryItemData>(), 1, out _);
+
+
+
+        }
 
     }
     
