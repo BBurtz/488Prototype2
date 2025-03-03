@@ -16,8 +16,8 @@ MonoBehaviour:
   - Mac
   - Windows
   PlatformSettingsList:
-  - {fileID: 11400000, guid: a20afac2720bb244a9fb0cc907b442b0, type: 2}
-  - {fileID: 11400000, guid: ab0bee484449f00438bbd19226f95084, type: 2}
+  - {fileID: 11400000, guid: fb71e0233993c4645b558dd0ddee7afc, type: 2}
+  - {fileID: 11400000, guid: e48f92f64e81414438ba7fa69158c73d, type: 2}
   InvalidReferencePlatforms: []
   UserSettings:
     m_BasePath: Audio\GeneratedSoundBanks
