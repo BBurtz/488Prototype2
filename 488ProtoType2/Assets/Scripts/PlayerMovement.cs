@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool CurrentlyJumping;
     private bool CurrentlyMoving;
+    private bool InCollection;
 
     public GameObject Camera;
     public GameObject EndScrene;
@@ -56,10 +57,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "EndLine")
+        if(other.tag == "CollectionZone")
         {
-            Cursor.lockState = CursorLockMode.None;
-            EndScrene.SetActive(true);
+            InCollection = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "CollectionZone")
+        {
+            InCollection = false;
         }
     }
 
