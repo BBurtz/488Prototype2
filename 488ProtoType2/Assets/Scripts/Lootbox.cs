@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Lootbox : MonoBehaviour, IInteractable
     //public InventoryItemData data;
 
     bool isOpen = false;
+    bool canOpenAgain = true;
 
     [Tooltip("What are the objects that you can get from this box?")]
     public List<ScriptableObject> ItemsInCrate = new List<ScriptableObject>();
@@ -41,22 +43,30 @@ public class Lootbox : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
 
-        if(!isOpen)
+        if (!isOpen)
         {
 
             isOpen = true;
             Debug.Log("it's open! and it's a " + Item);
 
         }
-        else
+        else if (isOpen && canOpenAgain)
         {
 
-            InventoryHolder myHolder = player.GetComponent<InventoryHolder>();
-            myHolder.InventorySystem.AddToInventory(Item.GetComponent<InventoryItemData>(), 1, out _);
-
+            //InventoryHolder myHolder = player.GetComponent<InventoryHolder>();
+            //myHolder.InventorySystem.AddToInventory(Item.GetComponent<InventoryItemData>(), 1, out _);
+            Randomization();
+            canOpenAgain = false;
 
 
         }
+
+    }
+
+    void Update()
+    {
+
+        //timer
 
     }
     
