@@ -36,12 +36,12 @@ public class WaterRising : MonoBehaviour
     {
         float waterTransformY = gameObject.transform.position.y;
 
-        while (gameObject.transform.position.y < WaterHeightY)
+        while (gameObject.transform.position.y <= WaterHeightY)
         {
-            waterTransformY += waterMoveIncrement;
+            waterTransformY += waterMoveIncrement * Time.deltaTime;
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, waterTransformY, gameObject.transform.position.z);
 
-            yield return new WaitForSeconds(1);
+            yield return null;
         }
 
         yield return null;
