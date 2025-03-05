@@ -14,11 +14,13 @@ public class Lootbox : MonoBehaviour, IInteractable
     bool isOpen = false;
     bool canOpenAgain = true;
 
-    [Tooltip("What are the objects that you can get from this box?")]
-    public List<ScriptableObject> ItemsInCrate = new List<ScriptableObject>();
+    public List<GameObject> slots = new List<GameObject>();
 
-    [Tooltip("DON'T TOUCH THIS.")]
-    public ScriptableObject Item;
+    //[Tooltip("What are the objects that you can get from this box?")]
+    //public List<ScriptableObject> ItemsInCrate = new List<ScriptableObject>();
+
+    //[Tooltip("DON'T TOUCH THIS.")]
+    //public ScriptableObject Item;
 
     private void Start()
     {
@@ -46,6 +48,14 @@ public class Lootbox : MonoBehaviour, IInteractable
         {
 
             isOpen = true;
+
+            for(int i = 0; i < slots.Count; i++)
+            {
+
+
+
+            }
+
             Debug.Log("it's open!");
 
         }
@@ -54,7 +64,7 @@ public class Lootbox : MonoBehaviour, IInteractable
 
             //InventoryHolder myHolder = player.GetComponent<InventoryHolder>();
             //myHolder.InventorySystem.AddToInventory(Item.GetComponent<InventoryItemData>(), 1, out _);
-            Randomization();
+            //Randomization();
             canOpenAgain = false;
 
 
