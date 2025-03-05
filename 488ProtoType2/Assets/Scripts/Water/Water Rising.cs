@@ -16,9 +16,13 @@ public class WaterRising : MonoBehaviour
     [Tooltip("Lowers or raises the drowning height in respect to the player height.")]
     public float DrowningOffset;
 
+    //water coroutine
     private Coroutine waterCoroutine;
+    //how much water moves each frame
     private float waterMoveIncrement;
+    //player transform
     [HideInInspector] public Transform playerTransform;
+    //drown script reference
     private Drowning DrownScript;
 
     private void Awake()
@@ -30,9 +34,9 @@ public class WaterRising : MonoBehaviour
     void Start()
     {
         playerTransform = FindFirstObjectByType<PlayerMovement>().transform;
-
         DrownScript = FindFirstObjectByType<Drowning>();
 
+        //calculates how much to move the water every frame
         waterMoveIncrement = Mathf.Abs(WaterHeightY - gameObject.transform.position.y) / SecondsUntilWaterReachesYHeight;
 
         if (waterCoroutine == null)
@@ -41,30 +45,36 @@ public class WaterRising : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts rising the water
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator WaterRise()
     {
         float waterTransformY = gameObject.transform.position.y;
 
         while (true)
         {
+            //moves water
             if (gameObject.transform.position.y <= WaterHeightY)
             {
                 waterTransformY += waterMoveIncrement * Time.deltaTime;
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x, waterTransformY, gameObject.transform.position.z);
             }
             
+            //calls to start drowning
             if (waterTransformY >= playerTransform.position.y + DrowningOffset)
             {
                 DrownScript.DrownStart();
             }
-            
             yield return null;
         }
-
-        yield return null;
     }
 
 
+    /// <summary>
+    /// Draw gizmos the reference how tall the water will go
+    /// </summary>
     private void OnDrawGizmos()
     {
         Awake();
