@@ -14,6 +14,7 @@ public class InventoryHolder : MonoBehaviour
     [SerializeField] protected InventorySystem _inventorySystem;
     [SerializeField] private int _inventorySize;
 
+
     public InventorySystem InventorySystem => _inventorySystem;
     private void Awake()
     {
@@ -24,10 +25,27 @@ public class InventoryHolder : MonoBehaviour
         int outputHolder;
         foreach (InventorySlot slot in system.CollectionOfSlots)
         {
-            if (slot.GetItemData() != null && !slot.GetItemData().DoesNotPersist)
+            if (slot.GetItemData() != null)
             {
                 _inventorySystem.AddToInventory(slot.GetItemData(), 1, out outputHolder);
             }
         }
+    }
+    public void OnTriggerEnter(Collider collidedObject)
+    {
+        HandlePickup(collidedObject);
+    }
+    public virtual bool HandlePickup(Collider collidedObject)
+    {
+        if (collidedObject.gameObject.TryGetComponent(out PickupInteractable pi))
+        {
+            if (!pi.GetHeldInHand())
+            {
+                _inventorySystem.AddToInventory(pi.GetItem(), 1, out _);
+                Destroy(collidedObject.gameObject);
+                return true;
+            }       
+        }
+        return false;
     }
 }
