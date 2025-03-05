@@ -23,16 +23,15 @@ public class Lootbox : MonoBehaviour, IInteractable
     private void Start()
     {
 
-        Randomization();
 
     }
 
     void Randomization()
     {
 
-        int randomItem = Random.Range(0, ItemsInCrate.Count);
+        //int randomItem = Random.Range(0, ItemsInCrate.Count);
 
-        Item = ItemsInCrate[randomItem];
+        //Item = ItemsInCrate[randomItem];
 
         //inventoryHolder.InventorySystem.AddToInventory(Item.GetComponent<InventoryItemData>(), 1, out _);
 
@@ -47,7 +46,7 @@ public class Lootbox : MonoBehaviour, IInteractable
         {
 
             isOpen = true;
-            Debug.Log("it's open! and it's a " + Item);
+            Debug.Log("it's open!");
 
         }
         else if (isOpen && canOpenAgain)
@@ -60,13 +59,6 @@ public class Lootbox : MonoBehaviour, IInteractable
 
 
         }
-
-    }
-
-    void Update()
-    {
-
-        //timer
 
     }
     
