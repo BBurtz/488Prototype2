@@ -13,8 +13,13 @@ public class WaterRising : MonoBehaviour
     [Tooltip("Length in seconds it takes for water to rise to Y Height.")]
     public int SecondsUntilWaterReachesYHeight = 1;
 
+    [Tooltip("Lowers or raises the drowning height in respect to the player height.")]
+    public float DrowningOffset;
+
     private Coroutine waterCoroutine;
     private float waterMoveIncrement;
+    [HideInInspector] public Transform playerTransform;
+    private Drowning DrownScript;
 
     private void Awake()
     {
@@ -24,6 +29,10 @@ public class WaterRising : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerTransform = FindFirstObjectByType<PlayerMovement>().transform;
+
+        DrownScript = FindFirstObjectByType<Drowning>();
+
         waterMoveIncrement = Mathf.Abs(WaterHeightY - gameObject.transform.position.y) / SecondsUntilWaterReachesYHeight;
 
         if (waterCoroutine == null)
@@ -36,11 +45,19 @@ public class WaterRising : MonoBehaviour
     {
         float waterTransformY = gameObject.transform.position.y;
 
-        while (gameObject.transform.position.y <= WaterHeightY)
+        while (true)
         {
-            waterTransformY += waterMoveIncrement * Time.deltaTime;
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, waterTransformY, gameObject.transform.position.z);
-
+            if (gameObject.transform.position.y <= WaterHeightY)
+            {
+                waterTransformY += waterMoveIncrement * Time.deltaTime;
+                gameObject.transform.position = new Vector3(gameObject.transform.position.x, waterTransformY, gameObject.transform.position.z);
+            }
+            
+            if (waterTransformY >= playerTransform.position.y + DrowningOffset)
+            {
+                DrownScript.DrownStart();
+            }
+            
             yield return null;
         }
 
