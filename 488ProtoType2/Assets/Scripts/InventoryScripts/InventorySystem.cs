@@ -210,4 +210,13 @@ public class InventorySystem
             return false;
         }
     }
+    public List<InventoryItemData> GetInventoryItemList()
+    {
+        List<InventoryItemData> tempList = new List<InventoryItemData>();
+        foreach (InventorySlot slot in collectionOfSlots)
+        {
+            tempList.Add(slot.GetItemData());
+        }
+        return tempList;
+    }
 }

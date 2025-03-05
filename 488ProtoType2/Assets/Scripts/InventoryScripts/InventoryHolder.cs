@@ -24,7 +24,7 @@ public class InventoryHolder : MonoBehaviour
         int outputHolder;
         foreach (InventorySlot slot in system.CollectionOfSlots)
         {
-            if (slot.GetItemData() != null && !slot.GetItemData().DoesNotPersist)
+            if (slot.GetItemData() != null)
             {
                 _inventorySystem.AddToInventory(slot.GetItemData(), 1, out outputHolder);
             }
