@@ -5,6 +5,7 @@ public class Drowning : MonoBehaviour
 {
     [Tooltip("Time until player drowns when under water.")]
     public float TimeUntilDrown = 1;
+
     private Coroutine drownCoroutine;
     private WaterRising waterRising;
 
@@ -12,16 +13,23 @@ public class Drowning : MonoBehaviour
     {
         waterRising = FindObjectOfType<WaterRising>();
     }
+
+    /// <summary>
+    /// Starts the coroutine if not started already
+    /// </summary>
     public void DrownStart()
     {
-        Debug.Log("starting");
-
         if (drownCoroutine == null)
         {
             drownCoroutine = StartCoroutine(Drown());
         }
     }
 
+
+    /// <summary>
+    /// Coroutine that runs player drowning and decides player death
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Drown()
     {
         float updatedTime = 0;
@@ -30,19 +38,18 @@ public class Drowning : MonoBehaviour
         {
             updatedTime += Time.deltaTime;
 
-            Debug.Log("here");
+            //if player resurfaces
             if (waterRising.gameObject.transform.position.y < waterRising.playerTransform.position.y + waterRising.DrowningOffset)
-            {
-                Debug.Log("stop");
+            { 
                 drownCoroutine = null;
                 StopCoroutine(drownCoroutine);
             }
+
             yield return new WaitForEndOfFrame();
         }
 
         //DIE
         Debug.Log("dead");
-        
 
         yield return null;
     }
