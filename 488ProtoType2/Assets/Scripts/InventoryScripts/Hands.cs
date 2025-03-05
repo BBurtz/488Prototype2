@@ -79,6 +79,7 @@ public class Hands : MonoBehaviour
         clone.transform.localScale = hand.transform.localScale;
         clone.transform.rotation = hand.rotation; //Quaternion.identity;
         clone.GetComponent<PickupInteractable>().DisableRB(); // Ensure RB is disabled
+        clone.GetComponent <PickupInteractable>().SetHeldInHand(true);
     }
 
     /// <summary>
@@ -95,9 +96,10 @@ public class Hands : MonoBehaviour
             {
                 var go = Instantiate(droppedItem.ItemPrefab, LeftHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
-                if (go.GetComponent<PickupInteractable>() != null)
+                if (go.TryGetComponent(out PickupInteractable pi))
                 {
-                    go.GetComponent<PickupInteractable>().EnableRB();
+                    pi.EnableRB();
+                    pi.SetHeldInHand(false);
                 }
             }
 
@@ -110,10 +112,12 @@ public class Hands : MonoBehaviour
             {
                 var go = Instantiate(droppedItem.ItemPrefab, RightHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
-                if (go.GetComponent<PickupInteractable>() != null)
+                if (go.TryGetComponent(out PickupInteractable pi))
                 {
-                    go.GetComponent<PickupInteractable>().EnableRB();
+                    pi.EnableRB();
+                    pi.SetHeldInHand(false);
                 }
+
             }
         }
     }

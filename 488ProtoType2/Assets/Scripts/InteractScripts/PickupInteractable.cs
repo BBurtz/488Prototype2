@@ -8,7 +8,7 @@ public class PickupInteractable : MonoBehaviour, IInteractable
 
     [Tooltip("The scale of the gameobject is multiplied by the scale of the held point AND this number")]
     public float heldScaleMultiplier = 1f;
-
+    [SerializeField] private bool IsHeldInHand;
     private Vector3 defaultScale;
     [HideInInspector] public Quaternion defaultRotation;
 
@@ -52,6 +52,14 @@ public class PickupInteractable : MonoBehaviour, IInteractable
             Destroy(gameObject);
         }
 
+    }
+    public bool GetHeldInHand()
+    {
+        return IsHeldInHand;
+    }
+    public void SetHeldInHand(bool handHeld)
+    {
+        IsHeldInHand = handHeld;
     }
     public InventoryItemData GetItem()
     {
