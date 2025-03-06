@@ -462,6 +462,7 @@ MonoBehaviour:
   _inventorySize: 100
   score: 0
   ScoringText: {fileID: 0}
+  HoleItemData: {fileID: 0}
 --- !u!65 &563956199
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -751,6 +752,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftHandTransform: {fileID: 905033081}
   RightHandTransform: {fileID: 1755990405}
+  Handsize: 0
+  throwStrength: 0
   _maxInteractDistance: 1
   _layerToIgnore:
     serializedVersion: 2

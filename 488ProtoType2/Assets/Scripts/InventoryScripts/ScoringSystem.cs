@@ -7,6 +7,7 @@ public class ScoringSystem : InventoryHolder
 {
     public int score;
     public TMPro.TMP_Text ScoringText;
+    [SerializeField][ReadOnly] InventoryItemData HoleItemData;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,14 +21,15 @@ public class ScoringSystem : InventoryHolder
         
     }
 
-    public override bool HandlePickup(Collider collidedObject)
+    public override void HandlePickup(Collider collidedObject)
     {
-        bool blah = base.HandlePickup(collidedObject);
-        if(blah)
+        base.HandlePickup(collidedObject);
+        if (collidedObject.gameObject.TryGetComponent(out PickupInteractable pi))
         {
+            _inventorySystem.AddToInventory(pi.GetItem(), 1, out _);
+            Destroy(collidedObject.gameObject);
             UpdateScore();
         }
-        return true;
     }
 
     public void UpdateScore()
@@ -38,5 +40,14 @@ public class ScoringSystem : InventoryHolder
         {
             score += (int)item.ValuableValue;
         }
+    }
+
+    public void DisplayInteractUI()
+    {
+        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Patch Hole [Click]");
+    }
+    public void HideInteractUI()
+    {
+        CanvasInteractionBehavior.HideInteractUI?.Invoke();
     }
 }
