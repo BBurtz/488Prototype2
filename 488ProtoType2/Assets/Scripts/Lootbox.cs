@@ -52,9 +52,28 @@ public class Lootbox : MonoBehaviour, IInteractable
             for(int i = 0; i < slots.Count; i++)
             {
 
+                if (slots[i].GetComponent<Slots>().xActive == true)
+                {
 
+                    slots[i].GetComponent<Animator>().SetTrigger("X");
+
+                }
+                if (slots[i].GetComponent<Slots>().treasureActive == true)
+                {
+
+                    slots[i].GetComponent<Animator>().SetTrigger("Treasure");
+
+                }
+                if (slots[i].GetComponent<Slots>().toolsActive == true)
+                {
+
+                    slots[i].GetComponent<Animator>().SetTrigger("Tools");
+
+                }
 
             }
+
+            if (slots[0].GetComponent<Slots>().xActive == true)
 
             Debug.Log("it's open!");
 

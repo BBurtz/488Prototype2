@@ -8,6 +8,13 @@ public class Slots : MonoBehaviour
     public bool treasureActive = false;
     public bool toolsActive = false;
 
+
+    private void Start()
+    {
+
+
+    }
+
     public void X()
     {
 
