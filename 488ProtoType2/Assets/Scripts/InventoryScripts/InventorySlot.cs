@@ -32,6 +32,15 @@ public class InventorySlot
     }
 
     /// <summary>
+    /// For checking if a specific slot is empty
+    /// </summary>
+    /// <returns></returns>
+    public bool IsEmpty()
+    {
+        return itemData == null;
+    }
+
+    /// <summary>
     /// Going to need this if i want an empty inventory slot, so might as well 
     /// redirect the default constructor here.
     /// </summary>
