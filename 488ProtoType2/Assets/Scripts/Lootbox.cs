@@ -4,7 +4,7 @@ using NUnit.Framework.Internal;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Lootbox : MonoBehaviour, IInteractable
+public class Lootbox : MonoBehaviour//, IInteractable
 {
 
     //put this on every lootbox (duh)

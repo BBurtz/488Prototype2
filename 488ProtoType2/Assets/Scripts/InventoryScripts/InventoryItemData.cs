@@ -3,9 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "InventoryItemData", menuName = "Scriptable Objects/InventoryItemData")]
 public class InventoryItemData : ScriptableObject
 {
-    public Sprite Icon;
+    public Sprite DisplaySprite;
     public int MaxStackSize;
     public string DisplayName;
-    public bool DoesNotPersist;
+    public float ValuableValue;
+    public float RepairableValue;
+    //public Mesh mesh;
+    //public Material material;
+    //public float Weight;
+    public GameObject ItemPrefab;
     [TextArea(4, 4)] public string DisplayDescription;
 }

@@ -94,15 +94,18 @@ public class PlayerMovement : MonoBehaviour
         InteractAction.started += interact;
     }
 
-    private void RightClick(InputAction.CallbackContext context)
-    {
-        throw new NotImplementedException();
-    }
-
     private void LeftClick(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        Hands.leftHandCalled?.Invoke(true);
+        //throw new NotImplementedException();
     }
+    private void RightClick(InputAction.CallbackContext context)
+    {
+        Hands.leftHandCalled?.Invoke(false);
+        //throw new NotImplementedException();
+    }
+
+
 
     private void pause(InputAction.CallbackContext context)
     {

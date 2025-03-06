@@ -33,11 +33,11 @@ public interface IInteractable
     /// Called when interaction with an interactable becomes avaliable. Can be
     /// used to displays the specific UI prompt for the interactable object.
     /// </summary>
-    void DisplayInteractUI() { }
+    void DisplayInteractUI();
 
     /// <summary>
     /// Called when interaction with an interactable becomes unavaliable. Can be
     /// used to hide the specific UI prompt for the interactable object.
     /// </summary>
-    void HideInteractUI() { }
+    void HideInteractUI();
 }
