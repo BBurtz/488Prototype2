@@ -35,17 +35,8 @@ public class InventoryHolder : MonoBehaviour
     {
         HandlePickup(collidedObject);
     }
-    public virtual bool HandlePickup(Collider collidedObject)
+    public virtual void HandlePickup(Collider collidedObject)
     {
-        if (collidedObject.gameObject.TryGetComponent(out PickupInteractable pi))
-        {
-            if (!pi.GetHeldInHand())
-            {
-                _inventorySystem.AddToInventory(pi.GetItem(), 1, out _);
-                Destroy(collidedObject.gameObject);
-                return true;
-            }       
-        }
-        return false;
+
     }
 }

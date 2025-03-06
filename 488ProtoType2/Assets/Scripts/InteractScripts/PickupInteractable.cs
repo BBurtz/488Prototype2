@@ -48,10 +48,17 @@ public class PickupInteractable : MonoBehaviour, IInteractable
         var handscript = player.GetComponent<Hands>();
         if (handscript != null)
         {
-            handscript.AddItem(itemData, player.GetComponent<Hands>().GetTargetedHand());
+            handscript.AddItem(itemData, player.GetComponent<Hands>().GetTargetedInventory());
             Destroy(gameObject);
         }
-
+    }
+    public void DisplayInteractUI()
+    {
+        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Pickup: " + gameObject.name + " [Click]");
+    }
+    public void HideInteractUI()
+    {
+        CanvasInteractionBehavior.HideInteractUI?.Invoke();
     }
     public bool GetHeldInHand()
     {

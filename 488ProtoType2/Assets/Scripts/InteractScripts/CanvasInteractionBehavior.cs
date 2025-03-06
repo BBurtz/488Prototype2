@@ -1,10 +1,11 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 public class CanvasInteractionBehavior : MonoBehaviour
 {
     [SerializeField] private GameObject interactPrompt;
-    public static Action ShowInteractUI;
+    public static Action<string> ShowInteractUI;
     public static Action HideInteractUI;
 
     private void Awake()
@@ -16,9 +17,10 @@ public class CanvasInteractionBehavior : MonoBehaviour
     /// <summary>
     /// General method to show the interactable prompt
     /// </summary>
-    private void EnableInteractUI()
+    private void EnableInteractUI(string text)
     {
         interactPrompt.SetActive(true);
+        interactPrompt.GetComponent<TMP_Text>().text = text;
     }
 
     /// <summary>
@@ -29,7 +31,6 @@ public class CanvasInteractionBehavior : MonoBehaviour
     {
         interactPrompt.SetActive(false);
     }
-
     private void OnDisable()
     {
         ShowInteractUI -= EnableInteractUI;
