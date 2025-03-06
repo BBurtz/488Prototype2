@@ -5,14 +5,16 @@ using UnityEngine.Events;
 public class Hands : MonoBehaviour
 {
     public static UnityEvent<bool> leftHandCalled = new UnityEvent<bool>();
-
-    public Transform LeftHandTransform;
-    public Transform RightHandTransform;
+    [SerializeField] private Transform LeftHandTransform;
+    [SerializeField] private Transform RightHandTransform;
+    [Tooltip("For scaling objects in hand")][SerializeField] private float Handsize;
+    [SerializeField] private float throwStrength;
     //public InventoryItemData testData;
 
     private InventorySystem leftHand;
     private InventorySystem rightHand;
     private Camera _camera;
+    private GameObject _targetGameObj;
 
     //[SerializeField] private GameObject _targetGameObj;
     private IInteractable _interactable;
@@ -48,15 +50,10 @@ public class Hands : MonoBehaviour
         }
         else if (_interactable == null)//not looking at something
         {
-            DropObject(leftButtonPressed);
-            Transform temp = leftButtonPressed ? LeftHandTransform : RightHandTransform;
-            foreach (Transform child in temp)
-            {
-                Destroy(child.gameObject);
-            }
+            DropObject(leftHandTargeted);
         }
     }
-    public InventorySystem GetTargetedHand()
+    public InventorySystem GetTargetedInventory()
     {
         if (leftHandTargeted)
         {
@@ -67,6 +64,10 @@ public class Hands : MonoBehaviour
             return rightHand;
         }
     }
+    public bool GetTargetedHand()
+    {
+        return leftHandTargeted;
+    }
 
     /// <summary>
     /// Picks up the object passed in the parameter.
@@ -76,7 +77,7 @@ public class Hands : MonoBehaviour
     {
         GameObject clone = Instantiate(pickup, hand.position, Quaternion.identity); // Create clone
         clone.transform.parent = hand.transform;
-        clone.transform.localScale = hand.transform.localScale;
+        clone.transform.localScale = pickup.transform.localScale * Handsize;
         clone.transform.rotation = hand.rotation; //Quaternion.identity;
         clone.GetComponent<PickupInteractable>().DisableRB(); // Ensure RB is disabled
         clone.GetComponent <PickupInteractable>().SetHeldInHand(true);
@@ -99,7 +100,12 @@ public class Hands : MonoBehaviour
                 if (go.TryGetComponent(out PickupInteractable pi))
                 {
                     pi.EnableRB();
+                    go.GetComponent<Rigidbody>().AddForce(LeftHandTransform.up + LeftHandTransform.forward * throwStrength, ForceMode.Impulse);
                     pi.SetHeldInHand(false);
+                }
+                foreach (Transform child in LeftHandTransform)
+                {
+                    Destroy(child.gameObject);
                 }
             }
 
@@ -115,9 +121,13 @@ public class Hands : MonoBehaviour
                 if (go.TryGetComponent(out PickupInteractable pi))
                 {
                     pi.EnableRB();
+                    go.GetComponent<Rigidbody>().AddForce(RightHandTransform.up + RightHandTransform.forward * throwStrength, ForceMode.Impulse);
                     pi.SetHeldInHand(false);
                 }
-
+                foreach (Transform child in RightHandTransform)
+                {
+                    Destroy(child.gameObject);
+                }
             }
         }
     }
@@ -170,25 +180,24 @@ public class Hands : MonoBehaviour
             Ray r = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             if (Physics.Raycast(r, out _colliderHit, _maxInteractDistance, ~_layerToIgnore))
             {
-                //_targetGameObj = _colliderHit.transform.gameObject;
-                var go = _colliderHit.transform.gameObject;
+                _targetGameObj = _colliderHit.transform.gameObject;
+                //var go = _colliderHit.transform.gameObject;
                 //sets the _interactable variable for the InteractPressed function
                 //if (_targetGameObj.TryGetComponent(out IInteractable interactable))
-                if(go.TryGetComponent(out IInteractable interactable))
+                if(_targetGameObj.TryGetComponent(out IInteractable interactable))
                 {
                     //_interactable = _targetGameObj.GetComponent<IInteractable>();
                     _interactable = interactable;
-                    CanvasInteractionBehavior.ShowInteractUI?.Invoke();
-
+                    //CanvasInteractionBehavior.ShowInteractUI?.Invoke();
                     //if each object needs their own prompt use this
-                    //_interactable.DisplayInteractUI();
+                    _interactable.DisplayInteractUI();
                 }
                 else if (_interactable != null)
                 {
-                    CanvasInteractionBehavior.HideInteractUI?.Invoke();
+                    //CanvasInteractionBehavior.HideInteractUI?.Invoke();
 
                     //if each object needs their own prompt use this
-                    //_interactable.HideInteractUI();
+                    _interactable.HideInteractUI();
 
                     _interactable = null;
                 }
@@ -198,10 +207,10 @@ public class Hands : MonoBehaviour
             {
                 //_targetGameObj = null;
 
-                CanvasInteractionBehavior.HideInteractUI?.Invoke();
+                //CanvasInteractionBehavior.HideInteractUI?.Invoke();
 
                 //if each object needs their own prompt use this
-                //_interactable.HideInteractUI();
+                _interactable.HideInteractUI();
 
                 _interactable = null;
             }
