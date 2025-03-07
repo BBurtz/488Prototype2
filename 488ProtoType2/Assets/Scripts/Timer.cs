@@ -4,16 +4,22 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public int CurrentTime;
-    public int MaxTime;
+    //public float CurrentTime;
+    //public float MaxTime;
     public Image water;
 
     public Coroutine TimerCouroutine;
+    private WaterRising WR;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        TimerCouroutine = StartCoroutine(TimerGoing());
+        WR = FindFirstObjectByType<WaterRising>();
+
+        if (TimerCouroutine == null)
+        {
+            TimerCouroutine = StartCoroutine(TimerGoing());
+        }
     }
 
 
@@ -21,21 +27,21 @@ public class Timer : MonoBehaviour
     {
         while (true)
         {
-            CurrentTime++;
-            yield return new WaitForSeconds(1f);
-            water.fillAmount = (float)(CurrentTime) / (float)(MaxTime);
+            water.fillAmount = WR.WaterPercent;
+            yield return null;
         }
     }
 
-    public IEnumerator PuaseTimer(int Pause)
+    public IEnumerator PauseTimer(int Pause)
     {
         StopCoroutine(TimerCouroutine);
         yield return new WaitForSeconds(Pause);
         TimerCouroutine = StartCoroutine(TimerGoing());
     }
-
+/*
     public void UpdateWater()
     {
         water.fillAmount = CurrentTime / MaxTime;
     }
+*/
 }

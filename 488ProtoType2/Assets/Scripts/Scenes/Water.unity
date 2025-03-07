@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &20877105 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8349808794322648088, guid: a111f6c6689deb7498425c3f2ae011fb, type: 3}
+  m_PrefabInstance: {fileID: 4078253289273756436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &78437737
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 78437737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 23.209993, z: -4.6}
+  m_LocalPosition: {x: 1.5, y: 19.5, z: -4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -428,12 +433,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550759840}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3077726, y: 8.9, z: -5.880808}
-  m_LocalScale: {x: 25.753124, y: 25.753124, z: 25.753124}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.013077726, y: 0.051900063, z: -0.058808077}
+  m_LocalScale: {x: 0.25753123, y: 0.25753123, z: 0.25753123}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 20877105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725316360
 GameObject:
@@ -637,7 +642,7 @@ Transform:
   m_GameObject: {fileID: 1104488397}
   serializedVersion: 2
   m_LocalRotation: {x: 0.043577872, y: 0.043577872, z: -0.0019026509, w: 0.99809736}
-  m_LocalPosition: {x: 1.5, y: 23.689993, z: -4.6}
+  m_LocalPosition: {x: 1.5, y: 19.98, z: -4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -731,10 +736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca26bcc89e0fc440875c1573f12d1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDefaultListener: 1
-  bOverrideScalingFactor: 0
-  scalingFactor: -1
-  listenerId: 0
 --- !u!114 &1104488404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,18 +748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e14aad407d19724eb433177cc282d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_listeners:
-    initialListenerList: []
-    useDefaultListeners: 1
-  isEnvironmentAware: 0
-  isStaticObject: 0
-  usePositionOffsetData: 0
-  m_positionOffsetData:
-    KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-  scalingFactor: 1
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
 --- !u!1 &1196717214
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,19 +933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c75b9f9fe231c419e11cc4d919b371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: 894113893d0cb3648be5e929df3c557b, type: 2}
-  basePath: 
-  language: 
-  defaultPoolSize: 0
-  lowerPoolSize: 0
-  streamingPoolSize: 0
-  memoryCutoffThreshold: 0
-  monitorPoolSize: 0
-  monitorQueuePoolSize: 0
-  callbackManagerBufferSize: 0
-  spatialAudioPoolSize: 0
-  maxSoundPropagationDepth: 0
-  engineLogging: 0
 --- !u!4 &1285592732
 Transform:
   m_ObjectHideFlags: 0
@@ -1026,7 +1002,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8349808794322648088, guid: a111f6c6689deb7498425c3f2ae011fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 550759844}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a111f6c6689deb7498425c3f2ae011fb, type: 3}
 --- !u!1660057539 &9223372036854775807
@@ -1037,5 +1016,4 @@ SceneRoots:
   - {fileID: 725316362}
   - {fileID: 4078253289273756436}
   - {fileID: 78437744}
-  - {fileID: 550759844}
   - {fileID: 1285592732}
