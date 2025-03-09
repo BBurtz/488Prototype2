@@ -1,41 +1,94 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+public class Timer : Singleton<Timer>
 {
-    public int CurrentTime;
-    public int MaxTime;
-    public Image water;
+    [SerializeField][ReadOnly] private float currentTime;
+    [SerializeField] private float maxTime;
+    [SerializeField] private bool timerPaused;
+    [SerializeField] private float tickSpeedDuration;
+    [SerializeField] private float tickSpeed;
 
     public Coroutine TimerCouroutine;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        currentTime = 0;
         TimerCouroutine = StartCoroutine(TimerGoing());
     }
 
-
-    public IEnumerator TimerGoing()
+    public float GetCurrentTime()
     {
-        while (true)
+        return currentTime;
+    }
+    public float GetMaxTime()
+    {
+        return maxTime;
+    }
+    public bool GetTimerPaused()
+    {
+        return timerPaused;
+    }
+    /// <summary>
+    /// Get current time/max time on a scale from 0 to 1
+    /// </summary>
+    /// <returns></returns>
+    public float GetNormalizedTime()
+    {
+        return currentTime / maxTime;
+    }
+    private IEnumerator TimerGoing()
+    {
+        while (!timerPaused)
         {
-            CurrentTime++;
-            yield return new WaitForSeconds(1f);
-            water.fillAmount = (float)(CurrentTime) / (float)(MaxTime);
+            if (tickSpeedDuration <= 0)
+            {
+                tickSpeedDuration = 0;
+                tickSpeed = 1;
+                currentTime += Time.deltaTime * tickSpeed;
+            }
+            else
+            {
+                tickSpeedDuration -= Time.deltaTime;
+            }
+            yield return null;
         }
     }
-
-    public IEnumerator PuaseTimer(int Pause)
+    public void PauseGameTimeScale()
     {
-        StopCoroutine(TimerCouroutine);
-        yield return new WaitForSeconds(Pause);
-        TimerCouroutine = StartCoroutine(TimerGoing());
+        Time.timeScale = 0;
+    }
+    public void UnPauseGameTimeScale()
+    {
+        Time.timeScale = 1;
     }
 
-    public void UpdateWater()
+    public void PauseGameTimer()
     {
-        water.fillAmount = CurrentTime / MaxTime;
+        timerPaused = !timerPaused;
+    }
+
+    public void HalveTickSpeedForDuration(float timeToAdd)
+    {
+        tickSpeed /= 2;
+        tickSpeedDuration += timeToAdd;
+    }
+
+    /// <summary>
+    /// DONT USE THIS. Jk but fr it's just a setter, use HalveTickSpeed for things that
+    /// speed up sinking.
+    /// </summary>
+    /// <param name="ts"></param>
+    public void SetTickSpeed(float ts)
+    {
+        tickSpeed = ts;
+    }
+
+    /// <summary>
+    /// Close the distance between the game ending and current time
+    /// </summary>
+    public void RemoveTimeFromGameTimer(float timeToRemove)
+    {
+        currentTime += timeToRemove;
     }
 }
