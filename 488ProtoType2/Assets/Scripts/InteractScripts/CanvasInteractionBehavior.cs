@@ -1,14 +1,16 @@
 using System;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 
-public class CanvasInteractionBehavior : MonoBehaviour
+public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
 {
     [SerializeField] private GameObject interactPrompt;
     public static Action<string> ShowInteractUI;
     public static Action HideInteractUI;
+    public Image water;
 
-    private void Awake()
+    private void Start()
     {
         ShowInteractUI += EnableInteractUI;
         HideInteractUI += DisableInteractUI;
@@ -35,5 +37,16 @@ public class CanvasInteractionBehavior : MonoBehaviour
     {
         ShowInteractUI -= EnableInteractUI;
         HideInteractUI -= DisableInteractUI;
+    }
+    public void UpdateWater()
+    {
+        if (water != null)
+        {
+            //water.fillAmount = Timer.Instance.GetNormalizedTime();
+        }
+        else
+        {
+            Debug.LogError("SET THE WATER IMAGE ON THE CANVAS");
+        }
     }
 }
