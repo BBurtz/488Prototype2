@@ -6,8 +6,8 @@ public class Timer : Singleton<Timer>
     [SerializeField][ReadOnly] private float currentTime;
     [SerializeField] private float maxTime;
     [SerializeField] private bool timerPaused;
-    [SerializeField] private float tickSpeedDuration;
-    [SerializeField] private float tickSpeed;
+    [SerializeField][ReadOnly] private float tickSpeedDuration;
+    [SerializeField][Tooltip("How fast the timer counts, not how fast the game runs")] private float tickSpeed;
 
     public Coroutine TimerCouroutine;
 
