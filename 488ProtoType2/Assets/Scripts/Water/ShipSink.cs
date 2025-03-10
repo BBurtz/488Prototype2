@@ -77,7 +77,8 @@ public class ShipSink : MonoBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
-        Vector3 ShipHeight = new Vector3(gameObject.transform.position.x, ShipHeightY, gameObject.transform.position.z); Gizmos.color = Color.blue;
+        Vector3 ShipHeight = new Vector3(gameObject.transform.position.x, ShipHeightY, gameObject.transform.position.z); 
+        Gizmos.color = Color.red;
         Gizmos.DrawSphere(ShipHeight, 1);
         Gizmos.DrawLine(gameObject.transform.position, ShipHeight);
 
