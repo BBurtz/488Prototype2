@@ -529,6 +529,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1206942574}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &918211705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4573587168559738092, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
+  m_PrefabInstance: {fileID: 4558359485004548972}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1206942572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,6 +552,18 @@ PrefabInstance:
       propertyPath: PauseMenu
       value: 
       objectReference: {fileID: 1509777567}
+    - target: {fileID: 866783923257806791, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
+      propertyPath: PlayerHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 866783923257806791, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
+      propertyPath: jumpStrength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 866783923257806791, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3351218328094639674, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -855,6 +878,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1614905227068126108, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954144303250635132, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
+      propertyPath: maxTime
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3027816107157715314, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -938,6 +969,18 @@ PrefabInstance:
     - target: {fileID: 3390484951285830052, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5360703766559701773, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
+      propertyPath: water
+      value: 
+      objectReference: {fileID: 918211705}
+    - target: {fileID: 5360703766559701773, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
+      propertyPath: timerEndY
+      value: -99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5360703766559701773, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
+      propertyPath: timerStartY
+      value: -14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

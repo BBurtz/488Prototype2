@@ -9,11 +9,20 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
     public static Action<string> ShowInteractUI;
     public static Action HideInteractUI;
     public Image water;
+    public float timerStartY;
+    public float timerEndY;
+
+
 
     private void Start()
     {
         ShowInteractUI += EnableInteractUI;
         HideInteractUI += DisableInteractUI;
+    }
+
+    private void Update()
+    {
+        UpdateWater();
     }
 
     /// <summary>
@@ -43,6 +52,11 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
         if (water != null)
         {
             //water.fillAmount = Timer.Instance.GetNormalizedTime();
+            float temp = timerStartY - timerEndY;
+            temp = (temp *(1- Timer.Instance.GetNormalizedTime()));
+            Debug.Log(temp + timerEndY);
+
+            water.rectTransform.anchoredPosition = new Vector2(water.rectTransform.anchoredPosition.x, temp + timerEndY);
         }
         else
         {
