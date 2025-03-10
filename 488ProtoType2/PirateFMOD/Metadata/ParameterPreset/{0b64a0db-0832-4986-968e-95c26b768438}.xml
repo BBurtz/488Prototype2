@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{0b64a0db-0832-4986-968e-95c26b768438}">
+		<property name="name">
+			<value>ItemSheet</value>
+		</property>
+		<relationship name="folder">
+			<destination>{dbbdbbdf-31f3-490a-a5e8-db46da2e5e57}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{979b1814-4463-487d-a108-703a2d376171}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{979b1814-4463-487d-a108-703a2d376171}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>7</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Wood</value>
+			<value>Map</value>
+			<value>Bottle</value>
+			<value>Bouncy Ball</value>
+			<value>Diamond</value>
+			<value>Coin Pouch</value>
+			<value>Silverware</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
