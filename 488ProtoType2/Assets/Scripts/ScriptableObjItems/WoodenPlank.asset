@@ -17,6 +17,7 @@ MonoBehaviour:
   DisplayName: Plank
   ValuableValue: 1
   RepairableValue: 3
+  DamageableValue: 1
   ItemPrefab: {fileID: 4897546229951431463, guid: 905b9f4aa47bb0c438c744e00a2219d9, type: 3}
   DisplayDescription: 'May not be prettiest thing in the world, but it''ll support
     you and your mateys through thick and thin
