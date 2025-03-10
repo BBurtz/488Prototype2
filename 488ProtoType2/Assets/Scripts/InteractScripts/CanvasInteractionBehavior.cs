@@ -54,9 +54,9 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
             //water.fillAmount = Timer.Instance.GetNormalizedTime();
             float temp = timerStartY - timerEndY;
             temp = (temp *(1- Timer.Instance.GetNormalizedTime()));
-            Debug.Log(temp);
+            Debug.Log(temp + timerEndY);
 
-            water.rectTransform.SetPositionAndRotation(new Vector3(water.rectTransform.position.x, temp + timerEndY, water.rectTransform.position.z), Quaternion.identity);
+            water.rectTransform.anchoredPosition = new Vector2(water.rectTransform.anchoredPosition.x, temp + timerEndY);
         }
         else
         {

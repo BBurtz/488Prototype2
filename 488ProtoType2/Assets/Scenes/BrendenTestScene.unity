@@ -552,6 +552,18 @@ PrefabInstance:
       propertyPath: PauseMenu
       value: 
       objectReference: {fileID: 1509777567}
+    - target: {fileID: 866783923257806791, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
+      propertyPath: PlayerHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 866783923257806791, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
+      propertyPath: jumpStrength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 866783923257806791, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3351218328094639674, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -868,7 +880,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1614905227068126108, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 420
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 2954144303250635132, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
       propertyPath: maxTime
@@ -964,11 +976,11 @@ PrefabInstance:
       objectReference: {fileID: 918211705}
     - target: {fileID: 5360703766559701773, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
       propertyPath: timerEndY
-      value: 334.4
+      value: -99
       objectReference: {fileID: 0}
     - target: {fileID: 5360703766559701773, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
       propertyPath: timerStartY
-      value: 420
+      value: -14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
