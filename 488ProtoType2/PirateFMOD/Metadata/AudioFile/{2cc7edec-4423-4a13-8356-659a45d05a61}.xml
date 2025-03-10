@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2cc7edec-4423-4a13-8356-659a45d05a61}">
+		<property name="assetPath">
+			<value>Placeholder/771164__steprock__treasure-chest-open.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3919999999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{af61e065-7a00-47c5-b04f-376595d1b1c6}</destination>
+		</relationship>
+	</object>
+</objects>
