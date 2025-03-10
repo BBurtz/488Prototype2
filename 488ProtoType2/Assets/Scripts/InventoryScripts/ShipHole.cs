@@ -98,7 +98,7 @@ public class ShipHole : InventoryHolder, IInteractable
     }
     public void DisplayInteractUI()
     {
-        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Patch Hole [Click]");
+        CanvasInteractionBehavior.ShowInteractUI?.Invoke(patchOnCoolDown ? "Patch on Cooldown" : "Patch Hole [Click]");
     }
     public void HideInteractUI()
     {
@@ -107,13 +107,21 @@ public class ShipHole : InventoryHolder, IInteractable
     public override void HandlePickup(Collider collidedObject)
     {
         base.HandlePickup(collidedObject);
-        if (!patchOnCoolDown  && collidedObject.gameObject.TryGetComponent(out PickupInteractable pi))
+        if (!patchOnCoolDown && collidedObject.gameObject.TryGetComponent(out PickupInteractable pi))
         {
             _inventorySystem.AddToInventory(pi.GetItem(), 1, out _);
             Destroy(collidedObject.gameObject);
             HoleItemData = _inventorySystem.GetInventoryItemList()[0];
             patchOnCoolDown = true;
             PutGameObjInHole();
+            if (Timer.Instance != null)
+            {
+                Timer.Instance.HalveTickSpeedForDuration(HoleItemData.RepairableValue);
+            }
+            else
+            {
+                Debug.LogWarning("Make sure there is a timer manager in the scene!");
+            }
         }
     }
 }
