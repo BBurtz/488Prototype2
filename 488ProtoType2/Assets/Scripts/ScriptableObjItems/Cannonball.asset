@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217bc5e0995c4b24f92e1f2813ef67be, type: 3}
+  m_Name: Cannonball
+  m_EditorClassIdentifier: 
+  DisplaySprite: {fileID: 0}
+  MaxStackSize: 1
+  DisplayName: Cannonball
+  ValuableValue: 1
+  RepairableValue: 1
+  DamageableValue: 1
+  ItemPrefab: {fileID: 2820057200480230558, guid: 95116ed61d7548a49b3327c7cee0bdd7, type: 3}
+  DisplayDescription: We love balls argggg
