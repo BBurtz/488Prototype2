@@ -1,7 +1,9 @@
 using System.Collections;
 using Unity.Collections;
 using UnityEngine;
-
+/// <summary>
+/// DEPRECIATED
+/// </summary>
 public class WaterRising : MonoBehaviour
 {
 
