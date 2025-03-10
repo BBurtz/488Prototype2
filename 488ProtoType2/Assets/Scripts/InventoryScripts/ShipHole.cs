@@ -98,7 +98,7 @@ public class ShipHole : InventoryHolder, IInteractable
     }
     public void DisplayInteractUI()
     {
-        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Patch Hole [Click]");
+        CanvasInteractionBehavior.ShowInteractUI?.Invoke(patchOnCoolDown ? "Patch on Cooldown" : "Patch Hole [Click]");
     }
     public void HideInteractUI()
     {
