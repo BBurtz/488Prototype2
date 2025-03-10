@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,11 +7,22 @@ public class Timer : Singleton<Timer>
     [SerializeField][ReadOnly] private float currentTime;
     [SerializeField] private float maxTime;
     [SerializeField] private bool timerPaused;
-    [SerializeField] private float tickSpeedDuration;
-    [SerializeField] private float tickSpeed;
+    [SerializeField][ReadOnly] private float tickSpeedDuration;
+    [SerializeField][ReadOnly] private float currentTickSpeed;
+    [SerializeField][Tooltip("How fast the timer counts, not how fast the game runs")] private float baseTickSpeed;
 
     public Coroutine TimerCouroutine;
 
+    public static Action GameEnd;
+
+    private void OnEnable()
+    {
+        GameEnd += GameEndedDebug;
+    }
+    private void OnDisable()
+    {
+        GameEnd -= GameEndedDebug;
+    }
     void Start()
     {
         currentTime = 0;
@@ -39,20 +51,24 @@ public class Timer : Singleton<Timer>
     }
     private IEnumerator TimerGoing()
     {
-        while (!timerPaused)
+        while (currentTime < maxTime)
         {
-            if (tickSpeedDuration <= 0)
+            if (!timerPaused)
             {
-                tickSpeedDuration = 0;
-                tickSpeed = 1;
-                currentTime += Time.deltaTime * tickSpeed;
+                if (tickSpeedDuration <= 0)
+                {
+                    tickSpeedDuration = 0;
+                    currentTickSpeed = baseTickSpeed;
+                    currentTime += Time.deltaTime * currentTickSpeed;
+                }
+                else
+                {
+                    tickSpeedDuration -= Time.deltaTime;
+                }
+                yield return null;
             }
-            else
-            {
-                tickSpeedDuration -= Time.deltaTime;
-            }
-            yield return null;
         }
+        GameEnd?.Invoke();
     }
     public void PauseGameTimeScale()
     {
@@ -63,6 +79,10 @@ public class Timer : Singleton<Timer>
         Time.timeScale = 1;
     }
 
+    public void GameEndedDebug()
+    {
+        print("GAME END");
+    }
     public void PauseGameTimer()
     {
         timerPaused = !timerPaused;
@@ -70,7 +90,7 @@ public class Timer : Singleton<Timer>
 
     public void HalveTickSpeedForDuration(float timeToAdd)
     {
-        tickSpeed /= 2;
+        currentTickSpeed /= 2;
         tickSpeedDuration += timeToAdd;
     }
 
@@ -81,7 +101,7 @@ public class Timer : Singleton<Timer>
     /// <param name="ts"></param>
     public void SetTickSpeed(float ts)
     {
-        tickSpeed = ts;
+        baseTickSpeed = ts;
     }
 
     /// <summary>

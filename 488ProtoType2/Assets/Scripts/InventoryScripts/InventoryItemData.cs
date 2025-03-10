@@ -8,9 +8,7 @@ public class InventoryItemData : ScriptableObject
     public string DisplayName;
     public float ValuableValue;
     public float RepairableValue;
-    //public Mesh mesh;
-    //public Material material;
-    //public float Weight;
+    public float DamageableValue;
     public GameObject ItemPrefab;
     [TextArea(4, 4)] public string DisplayDescription;
 }
