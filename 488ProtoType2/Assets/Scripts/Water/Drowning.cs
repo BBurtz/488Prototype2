@@ -7,11 +7,11 @@ public class Drowning : MonoBehaviour
     public float TimeUntilDrown = 1;
 
     private Coroutine drownCoroutine;
-    private WaterRising waterRising;
+    private ShipSink shipSinking;
 
     private void Start()
     {
-        waterRising = FindObjectOfType<WaterRising>();
+        shipSinking = FindFirstObjectByType<ShipSink>();
     }
 
     /// <summary>
@@ -37,12 +37,11 @@ public class Drowning : MonoBehaviour
         while (updatedTime < TimeUntilDrown)
         {
             updatedTime += Time.deltaTime;
-
             //if player resurfaces
-            if (waterRising.gameObject.transform.position.y < waterRising.playerTransform.position.y + waterRising.DrowningOffset)
-            { 
+            if (shipSinking.Water.transform.position.y > shipSinking.playerTransform.position.y + shipSinking.DrowningOffset)
+            {
+                StopCoroutine(Drown());
                 drownCoroutine = null;
-                StopCoroutine(drownCoroutine);
             }
 
             yield return new WaitForEndOfFrame();
