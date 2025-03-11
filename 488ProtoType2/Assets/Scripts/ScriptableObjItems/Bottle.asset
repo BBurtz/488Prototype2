@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217bc5e0995c4b24f92e1f2813ef67be, type: 3}
+  m_Name: Bottle
+  m_EditorClassIdentifier: 
+  DisplaySprite: {fileID: 0}
+  MaxStackSize: 0
+  DisplayName: 
+  ValuableValue: 10000
+  RepairableValue: 7
+  DamageableValue: 0
+  ItemPrefab: {fileID: 919132149155446097, guid: 7fca86c9d66c43b4d950b5ea84df2e16, type: 3}
+  DisplayDescription: A bottle of every pirate's favorite drink. Appears to be unopened
+    (somehow).
