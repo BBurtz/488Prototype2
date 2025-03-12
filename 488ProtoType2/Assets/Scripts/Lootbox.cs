@@ -17,7 +17,7 @@ public class Lootbox : MonoBehaviour, IInteractable
     public List<GameObject> slots = new List<GameObject>();
 
     [Tooltip("Drop all of the list prefabs here.")]
-    public List<ScriptableObject> ListsOfItems = new List<ScriptableObject>();
+    public List<GameObject> ListsOfItems = new List<GameObject>();
 
     List<ScriptableObject> itemsFromLists = new List<ScriptableObject>();
 
@@ -171,6 +171,8 @@ public class Lootbox : MonoBehaviour, IInteractable
             isOpen = false;
             canOpenAgain = false;
 
+            GetComponent<Animator>().SetTrigger("Close");
+
         }
 
     }
@@ -181,6 +183,8 @@ public class Lootbox : MonoBehaviour, IInteractable
         int randomItem = Random.Range(0, itemsFromLists.Count);
 
         Item = itemsFromLists[randomItem];
+
+        GetComponent<Animator>().SetTrigger("Open");
 
         Instantiate(Item);
 
