@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Drowning : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class Drowning : MonoBehaviour
 
         //DIE
         Debug.Log("dead");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         yield return null;
     }
