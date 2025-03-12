@@ -123,7 +123,7 @@ Material:
     - _EnvironmentReflections: 1
     - _FlowSpeed: 0.01
     - _FlowStrength: 0.0075
-    - _FoamDistance: 200
+    - _FoamDistance: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
