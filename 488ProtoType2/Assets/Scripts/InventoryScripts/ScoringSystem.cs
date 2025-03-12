@@ -28,7 +28,9 @@ public class ScoringSystem : InventoryHolder
         if (collidedObject.gameObject.TryGetComponent(out PickupInteractable pi))
         {
             _inventorySystem.AddToInventory(pi.GetItem(), 1, out _);
+            Vector3 saveLocation = collidedObject.transform.position; //grabs object location for playing collection sfx
             Destroy(collidedObject.gameObject);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.LootUp, saveLocation);
             UpdateScore();
         }
     }
