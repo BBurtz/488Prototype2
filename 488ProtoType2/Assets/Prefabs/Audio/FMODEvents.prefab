@@ -100,3 +100,10 @@ MonoBehaviour:
       Data3: -1970863481
       Data4: 1866152067
     Path: event:/Footsteps
+  <LootUp>k__BackingField:
+    Guid:
+      Data1: -82408760
+      Data2: 1202571506
+      Data3: 2076452799
+      Data4: -881021726
+    Path: event:/LootUp

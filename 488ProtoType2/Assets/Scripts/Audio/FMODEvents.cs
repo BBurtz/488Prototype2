@@ -16,6 +16,7 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference Ambience { get; private set; }
     [field: SerializeField] public EventReference ChestOpen { get; private set; }
     [field: SerializeField] public EventReference Footsteps { get; private set; }
+    [field: SerializeField] public EventReference LootUp { get; private set; }
 
     public static FMODEvents instance { get; private set; }
 
