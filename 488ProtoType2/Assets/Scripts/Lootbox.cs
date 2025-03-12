@@ -45,6 +45,7 @@ public class Lootbox : MonoBehaviour, IInteractable
         {
 
             isOpen = true;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.ChestOpen, this.transform.position);
 
             for(int i = 0; i < slots.Count; i++)
             {
