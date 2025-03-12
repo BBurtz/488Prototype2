@@ -11,7 +11,6 @@ public class Lootbox : MonoBehaviour, IInteractable
     //put this on every lootbox (duh)
 
     bool isOpen = false;
-    bool canOpenAgain = true;
 
     [Tooltip("Put the three slot prefabs here.")]
     public List<GameObject> slots = new List<GameObject>();
@@ -158,7 +157,7 @@ public class Lootbox : MonoBehaviour, IInteractable
             Debug.Log("it's open!");
 
         }
-        else if (isOpen && canOpenAgain)
+        else if (isOpen)
         {
 
             for (int i = 0; i < slots.Count; i++)
@@ -169,7 +168,6 @@ public class Lootbox : MonoBehaviour, IInteractable
             }
 
             isOpen = false;
-            canOpenAgain = false;
 
             GetComponent<Animator>().SetTrigger("Close");
 
