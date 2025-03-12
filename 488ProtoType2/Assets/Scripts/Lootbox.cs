@@ -9,7 +9,6 @@ public class Lootbox : MonoBehaviour, IInteractable
 {
 
     //put this on every lootbox (duh)
-
     bool isOpen = false;
     bool canOpenAgain = true;
 
@@ -70,7 +69,7 @@ public class Lootbox : MonoBehaviour, IInteractable
                         for(int integer = 0; integer < ListsOfItems[0].GetComponent<Lists>().Items.Count; integer++)
                         {
 
-                            itemsFromLists.Add(ListsOfItems[0].GetComponent<Lists>().Items[integer].GetComponent<PickupInteractable>().GetItem());
+                            itemsFromLists.Add(ListsOfItems[0].GetComponent<Lists>().Items[integer]);
 
                         }
 
@@ -83,7 +82,7 @@ public class Lootbox : MonoBehaviour, IInteractable
                         for (int integer = 0; integer < ListsOfItems[1].GetComponent<Lists>().Items.Count; integer++)
                         {
 
-                            itemsFromLists.Add(ListsOfItems[1].GetComponent<Lists>().Items[integer].GetComponent<PickupInteractable>().GetItem());
+                            itemsFromLists.Add(ListsOfItems[1].GetComponent<Lists>().Items[integer]);
 
                         }
 
@@ -98,7 +97,7 @@ public class Lootbox : MonoBehaviour, IInteractable
                         for (int integer = 0; integer < ListsOfItems[2].GetComponent<Lists>().Items.Count; integer++)
                         {
 
-                            itemsFromLists.Add(ListsOfItems[2].GetComponent<Lists>().Items[integer].GetComponent<PickupInteractable>().GetItem());
+                            itemsFromLists.Add(ListsOfItems[2].GetComponent<Lists>().Items[integer]);
                         }
 
                     }
@@ -115,7 +114,7 @@ public class Lootbox : MonoBehaviour, IInteractable
                         for (int integer = 0; integer < ListsOfItems[3].GetComponent<Lists>().Items.Count; integer++)
                         {
 
-                            itemsFromLists.Add(ListsOfItems[3].GetComponent<Lists>().Items[integer].GetComponent<PickupInteractable>().GetItem());
+                            itemsFromLists.Add(ListsOfItems[3].GetComponent<Lists>().Items[integer]);
 
                         }
 
@@ -128,7 +127,7 @@ public class Lootbox : MonoBehaviour, IInteractable
                         for (int integer = 0; integer < ListsOfItems[4].GetComponent<Lists>().Items.Count; integer++)
                         {
 
-                            itemsFromLists.Add(ListsOfItems[4].GetComponent<Lists>().Items[integer].GetComponent<PickupInteractable>().GetItem());
+                            itemsFromLists.Add(ListsOfItems[4].GetComponent<Lists>().Items[integer]);
 
                         }
 
@@ -143,7 +142,7 @@ public class Lootbox : MonoBehaviour, IInteractable
                         for (int integer = 0; integer < ListsOfItems[5].GetComponent<Lists>().Items.Count; integer++)
                         {
 
-                            itemsFromLists.Add(ListsOfItems[5].GetComponent<Lists>().Items[integer].GetComponent<PickupInteractable>().GetItem());
+                            itemsFromLists.Add(ListsOfItems[5].GetComponent<Lists>().Items[integer]);
 
         }
 
@@ -159,8 +158,10 @@ public class Lootbox : MonoBehaviour, IInteractable
             Debug.Log("it's open!");
 
         }
-        else if (isOpen && canOpenAgain)
+        else if (isOpen && Item.ItemPrefab == null)
         {
+
+            //Destroy(Item);
 
             for (int i = 0; i < slots.Count; i++)
             {
@@ -171,7 +172,7 @@ public class Lootbox : MonoBehaviour, IInteractable
 
             isOpen = false;
 
-            GetComponent<Animator>().SetTrigger("Close");
+            //GetComponent<Animator>().SetTrigger("Close");
 
         }
 
@@ -184,7 +185,7 @@ public class Lootbox : MonoBehaviour, IInteractable
 
         Item = itemsFromLists[randomItem];
 
-        GetComponent<Animator>().SetTrigger("Open");
+        //GetComponent<Animator>().SetTrigger("Open");
 
         Instantiate(Item.ItemPrefab, ChestPos.position, ChestPos.parent.rotation);
         //Item.transform.parent = ChestPos;
@@ -198,6 +199,5 @@ public class Lootbox : MonoBehaviour, IInteractable
     {
         CanvasInteractionBehavior.HideInteractUI?.Invoke();
     }
-
 
 }
