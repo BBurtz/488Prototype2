@@ -240,8 +240,28 @@ PrefabInstance:
       value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: CollisionModule.maxKillSpeed
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: CollisionModule.minKillSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
