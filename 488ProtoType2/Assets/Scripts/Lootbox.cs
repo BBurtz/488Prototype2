@@ -7,7 +7,6 @@ public class Lootbox : MonoBehaviour, IInteractable
 
     //put this on every lootbox (duh)
     bool isOpen = false;
-    bool canOpenAgain = true;
 
     [Tooltip("Put the three slot prefabs here.")]
     public List<GameObject> slots = new List<GameObject>();
@@ -18,8 +17,8 @@ public class Lootbox : MonoBehaviour, IInteractable
     List<InventoryItemData> itemsFromLists = new List<InventoryItemData>();
 
     private GameObject instantiatedObj;
-    //don't worry about these
 
+    //don't worry about these
     bool treasureAlreadyActive = false;
     bool treasureAlreadyActiveAgain = false;
 
@@ -28,19 +27,16 @@ public class Lootbox : MonoBehaviour, IInteractable
 
     [SerializeField] Transform ChestPos;
 
-    private void Start()
-    {
-
-
-    }
-
     public void Interact(GameObject player)
     {
         if (!isOpen)
         {
             isOpen = true;
+
             StopCoroutine(WaitForPickup());
+
             StartCoroutine(WaitForPickup());
+
             AudioManager.instance.PlayOneShot(FMODEvents.instance.ChestOpen, this.transform.position);
 
             for (int i = 0; i < slots.Count; i++)
@@ -50,7 +46,6 @@ public class Lootbox : MonoBehaviour, IInteractable
                 {
 
                     slots[i].GetComponent<Animator>().SetTrigger("X");
-
 
                 }
                 if (slots[i].GetComponent<Slots>().treasureActive == true)
@@ -145,13 +140,14 @@ public class Lootbox : MonoBehaviour, IInteractable
             }
 
             PickRandomItemToInstantiate();
-            Debug.Log("it's open!");
-        }
 
+        }
         //player has not picked up item and is trying to roll again
         else if (isOpen && instantiatedObj != null)
         {
+
             Destroy(instantiatedObj);
+
             for (int i = 0; i < slots.Count; i++)
             {
 
@@ -160,12 +156,16 @@ public class Lootbox : MonoBehaviour, IInteractable
             }
 
             isOpen = false;       
+
             //GetComponent<Animator>().SetTrigger("Close");
+
         }
         //player picked up the item and is trying to roll again
         else if (isOpen && instantiatedObj == null)
         {
-            canOpenAgain = false;
+
+            //player cannot reopen the chest
+
         }
     }
     private IEnumerator WaitForPickup()
@@ -173,9 +173,13 @@ public class Lootbox : MonoBehaviour, IInteractable
         while (instantiatedObj != null)
         {
             print("NOT NULL");
+
             yield return new WaitForSeconds(0.1f);
+
         }
+
         print("NULLED");
+
         yield return null;
     }
 
@@ -189,24 +193,33 @@ public class Lootbox : MonoBehaviour, IInteractable
         //GetComponent<Animator>().SetTrigger("Open");
 
         instantiatedObj = Instantiate(tempItem.ItemPrefab, ChestPos.position, ChestPos.parent.rotation);
+
         instantiatedObj.transform.parent = ChestPos;
 
         if (instantiatedObj.TryGetComponent(out PickupInteractable pi))
         {
             pi.SetHeldInHand(true);
+
             if(instantiatedObj.TryGetComponent(out Rigidbody rb))
             {
+
                 rb.isKinematic = true;
+
             }
         }
     }
 
     public void DisplayInteractUI()
     {
+
         CanvasInteractionBehavior.ShowInteractUI?.Invoke("Pickup: " + gameObject.name + " [Click]");
+
     }
+
     public void HideInteractUI()
     {
+
         CanvasInteractionBehavior.HideInteractUI?.Invoke();
+        
     }
 }
