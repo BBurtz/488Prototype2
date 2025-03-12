@@ -60,7 +60,7 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
         }
         else
         {
-            Debug.LogError("SET THE WATER IMAGE ON THE CANVAS");
+            //Debug.LogError("SET THE WATER IMAGE ON THE CANVAS");
         }
     }
 }
