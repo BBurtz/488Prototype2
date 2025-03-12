@@ -15,6 +15,9 @@ public class Timer : Singleton<Timer>
 
     public static Action GameEnd;
 
+    //SORRY
+    public GameObject EndScreen;
+
     private void OnEnable()
     {
         GameEnd += GameEndedDebug;
@@ -69,6 +72,8 @@ public class Timer : Singleton<Timer>
             }
         }
         GameEnd?.Invoke();
+
+        EndTheGame();
     }
     public void PauseGameTimeScale()
     {
@@ -110,5 +115,13 @@ public class Timer : Singleton<Timer>
     public void RemoveTimeFromGameTimer(float timeToRemove)
     {
         currentTime += timeToRemove;
+    }
+
+    public void EndTheGame()
+    {
+
+        EndScreen.SetActive(true);
+        Time.timeScale = 0;
+
     }
 }
