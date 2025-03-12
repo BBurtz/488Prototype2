@@ -7,6 +7,7 @@ public class ScoringSystem : InventoryHolder
 {
     public int score;
     public TMPro.TMP_Text ScoringText;
+    public GameObject InteractPrompt;
     [SerializeField][ReadOnly] InventoryItemData HoleItemData;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,5 +50,21 @@ public class ScoringSystem : InventoryHolder
     public void HideInteractUI()
     {
         CanvasInteractionBehavior.HideInteractUI?.Invoke();
+    }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            InteractPrompt.SetActive(true);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            InteractPrompt.SetActive(false);
+        }
     }
 }
