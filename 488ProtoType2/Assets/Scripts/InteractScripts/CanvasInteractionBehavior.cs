@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
 {
+    public static Action PauseToggle;
+    public static Action KillToggle;
+
     [SerializeField] private GameObject interactPrompt;
     public static Action<string> ShowInteractUI;
     public static Action HideInteractUI;
@@ -12,13 +15,18 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
     public float timerStartY;
     public float timerEndY;
 
+    public GameObject EndScrene;
+    public GameObject PauseMenu;
 
 
-    private void Start()
+    private void OnEnable()
     {
         ShowInteractUI += EnableInteractUI;
         HideInteractUI += DisableInteractUI;
+        PauseToggle += togglePause;
+        KillToggle += endGame;
     }
+
 
     private void Update()
     {
@@ -46,6 +54,8 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
     {
         ShowInteractUI -= EnableInteractUI;
         HideInteractUI -= DisableInteractUI;
+        PauseToggle -= togglePause;
+        KillToggle -= endGame;
     }
     public void UpdateWater()
     {
@@ -62,5 +72,33 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
         {
             Debug.LogError("SET THE WATER IMAGE ON THE CANVAS");
         }
+    }
+
+    public void togglePause()
+    {
+        if (PauseMenu == null)
+        {
+            return;
+        }
+
+        if (!PauseMenu.activeSelf)
+        {
+            PauseMenu.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else if (PauseMenu.activeSelf)
+        {
+            PauseMenu.SetActive(false);
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+    }
+
+    public void endGame()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        EndScrene.SetActive(true);
     }
 }

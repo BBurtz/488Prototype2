@@ -29,8 +29,6 @@ public class PlayerMovement : MonoBehaviour
     private bool CurrentlyMoving;
 
     public GameObject Camera;
-    public GameObject EndScrene;
-    public GameObject PauseMenu;
 
     public PlayerInput playerControls;
 
@@ -58,8 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.tag == "EndLine")
         {
-            Cursor.lockState = CursorLockMode.None;
-            EndScrene.SetActive(true);
+            CanvasInteractionBehavior.KillToggle?.Invoke();
         }
     }
 
@@ -109,24 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void pause(InputAction.CallbackContext context)
     {
-        if (PauseMenu == null)
-        {
-            return;
-        }
-
-        if (!PauseMenu.activeSelf)
-        {
-            PauseMenu.SetActive(true);
-            Time.timeScale = 0;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else if (PauseMenu.activeSelf)
-        {
-            PauseMenu.SetActive(false);
-            Time.timeScale = 1;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
+        CanvasInteractionBehavior.PauseToggle?.Invoke();
     }
 
     private void OnDisable()
@@ -144,21 +124,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-            if (!CurrentlyMoving)
-            {
-                MoveVal = Vector3.zero;
-            }
-            var c = MoveVal;
-            Vector3 moveDirection = Camera.transform.forward * c.y + Camera.transform.right * c.x;
-            moveDirection.y = 0;
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
-            Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-            if (flatVel.magnitude > moveSpeed)
-            {
-                Vector3 limitedVel = flatVel.normalized * moveSpeed;
-                rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
-            }
+        if (!CurrentlyMoving)
+        {
+            MoveVal = Vector3.zero;
+        }
+        var c = MoveVal;
+        Vector3 moveDirection = Camera.transform.forward * c.y + Camera.transform.right * c.x;
+        moveDirection.y = 0;
+        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        
+        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+        }
     }
 
     private void Jump(InputAction.CallbackContext context)
