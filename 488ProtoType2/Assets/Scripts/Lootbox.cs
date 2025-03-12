@@ -17,9 +17,9 @@ public class Lootbox : MonoBehaviour, IInteractable
     public List<GameObject> slots = new List<GameObject>();
 
     [Tooltip("Drop all of the list prefabs here.")]
-    public List<GameObject> ListsOfItems = new List<GameObject>();
+    public List<ScriptableObject> ListsOfItems = new List<ScriptableObject>();
 
-    List<GameObject> itemsFromLists = new List<GameObject>();
+    List<ScriptableObject> itemsFromLists = new List<ScriptableObject>();
 
     //don't worry about these
 
@@ -30,7 +30,7 @@ public class Lootbox : MonoBehaviour, IInteractable
     bool toolsAlreadyActiveAgain = false;
 
     [Tooltip("DON'T TOUCH THIS.")]
-    public GameObject Item;
+    public ScriptableObject Item;
 
     private void Start()
     {
