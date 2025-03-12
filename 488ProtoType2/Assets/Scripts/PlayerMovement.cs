@@ -9,6 +9,8 @@
                             - Player Movement, both normal and treadmill
                             - Calls interaction functions
 *****************************************************************************/
+using FMOD.Studio;
+using FMODUnity;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -51,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     Coroutine movementcoroutineInstance;
 
-    
+    private EventInstance walkSFX;
 
 
     private void OnTriggerEnter(Collider other)
@@ -70,10 +72,13 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         //audio
+        walkSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Footsteps);
     }
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, whatIsGround);
+
+        walkSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), GetComponent<Rigidbody>()));
     }
 
     private void OnEnable()
@@ -159,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
             }
+        UpdateWalkSFX();
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -167,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(0, jumpStrength, 0, ForceMode.Force);
             grounded = false;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Jump, transform.position);
         }
     }
 
@@ -200,6 +207,23 @@ public class PlayerMovement : MonoBehaviour
             movementcoroutineInstance = StartCoroutine(Movement());
         }*/
 
+    }
+
+    private void UpdateWalkSFX()
+    {
+        if ((rb.linearVelocity.x > 0 || rb.linearVelocity.z > 0) && grounded)
+        {
+            PLAYBACK_STATE playbackState;
+            walkSFX.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                walkSFX.start();
+            }
+        }
+        else
+        {
+            walkSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
     }
 
 
