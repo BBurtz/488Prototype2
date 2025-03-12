@@ -5,5 +5,5 @@ public class Lists : MonoBehaviour
 {
     //this script is literally just a list container. this will be put on prefabs!
 
-    public List<GameObject> Items = new List<GameObject>();
+    public List<ScriptableObject> Items = new List<ScriptableObject>();
 }
