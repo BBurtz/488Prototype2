@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class Lootbox : MonoBehaviour, IInteractable
@@ -20,6 +17,7 @@ public class Lootbox : MonoBehaviour, IInteractable
 
     List<InventoryItemData> itemsFromLists = new List<InventoryItemData>();
 
+    private GameObject instantiatedObj;
     //don't worry about these
 
     bool treasureAlreadyActive = false;
@@ -27,9 +25,6 @@ public class Lootbox : MonoBehaviour, IInteractable
 
     bool toolsAlreadyActive = false;
     bool toolsAlreadyActiveAgain = false;
-
-    [Tooltip("DON'T TOUCH THIS.")]
-    public InventoryItemData Item;
 
     [SerializeField] Transform ChestPos;
 
@@ -41,14 +36,14 @@ public class Lootbox : MonoBehaviour, IInteractable
 
     public void Interact(GameObject player)
     {
-
         if (!isOpen)
         {
-
             isOpen = true;
+            StopCoroutine(WaitForPickup());
+            StartCoroutine(WaitForPickup());
             AudioManager.instance.PlayOneShot(FMODEvents.instance.ChestOpen, this.transform.position);
 
-            for(int i = 0; i < slots.Count; i++)
+            for (int i = 0; i < slots.Count; i++)
             {
 
                 if (slots[i].GetComponent<Slots>().xActive == true)
@@ -66,7 +61,7 @@ public class Lootbox : MonoBehaviour, IInteractable
                     if (treasureAlreadyActive == false && treasureAlreadyActiveAgain == false)
                     {
 
-                        for(int integer = 0; integer < ListsOfItems[0].GetComponent<Lists>().Items.Count; integer++)
+                        for (int integer = 0; integer < ListsOfItems[0].GetComponent<Lists>().Items.Count; integer++)
                         {
 
                             itemsFromLists.Add(ListsOfItems[0].GetComponent<Lists>().Items[integer]);
@@ -74,7 +69,7 @@ public class Lootbox : MonoBehaviour, IInteractable
                         }
 
                         treasureAlreadyActive = true;
-                            
+
                     }
                     else if (treasureAlreadyActive == true && treasureAlreadyActiveAgain == false)
                     {
@@ -144,25 +139,19 @@ public class Lootbox : MonoBehaviour, IInteractable
 
                             itemsFromLists.Add(ListsOfItems[5].GetComponent<Lists>().Items[integer]);
 
-        }
-
+                        }
                     }
-
-
-
                 }
-
             }
 
-            Randomization();
+            PickRandomItemToInstantiate();
             Debug.Log("it's open!");
-
         }
-        else if (isOpen && Item.ItemPrefab == null)
+
+        //player has not picked up item and is trying to roll again
+        else if (isOpen && instantiatedObj != null)
         {
-
-            //Destroy(Item);
-
+            Destroy(instantiatedObj);
             for (int i = 0; i < slots.Count; i++)
             {
 
@@ -170,25 +159,46 @@ public class Lootbox : MonoBehaviour, IInteractable
 
             }
 
-            isOpen = false;
-
+            isOpen = false;       
             //GetComponent<Animator>().SetTrigger("Close");
-
         }
-
+        //player picked up the item and is trying to roll again
+        else if (isOpen && instantiatedObj == null)
+        {
+            canOpenAgain = false;
+        }
+    }
+    private IEnumerator WaitForPickup()
+    {
+        while (instantiatedObj != null)
+        {
+            print("NOT NULL");
+            yield return new WaitForSeconds(0.1f);
+        }
+        print("NULLED");
+        yield return null;
     }
 
-    void Randomization()
+    void PickRandomItemToInstantiate()
     {
 
         int randomItem = Random.Range(0, itemsFromLists.Count);
 
-        Item = itemsFromLists[randomItem];
+        var tempItem = itemsFromLists[randomItem];
 
         //GetComponent<Animator>().SetTrigger("Open");
 
-        Instantiate(Item.ItemPrefab, ChestPos.position, ChestPos.parent.rotation);
-        //Item.transform.parent = ChestPos;
+        instantiatedObj = Instantiate(tempItem.ItemPrefab, ChestPos.position, ChestPos.parent.rotation);
+        instantiatedObj.transform.parent = ChestPos;
+
+        if (instantiatedObj.TryGetComponent(out PickupInteractable pi))
+        {
+            pi.SetHeldInHand(true);
+            if(instantiatedObj.TryGetComponent(out Rigidbody rb))
+            {
+                rb.isKinematic = true;
+            }
+        }
     }
 
     public void DisplayInteractUI()
@@ -199,5 +209,4 @@ public class Lootbox : MonoBehaviour, IInteractable
     {
         CanvasInteractionBehavior.HideInteractUI?.Invoke();
     }
-
 }
