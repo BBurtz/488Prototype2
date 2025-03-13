@@ -31,7 +31,7 @@ public class InventoryHolder : MonoBehaviour
             }
         }
     }
-    public void OnTriggerEnter(Collider collidedObject)
+    public virtual void OnTriggerEnter(Collider collidedObject)
     {
         HandlePickup(collidedObject);
     }
