@@ -163,7 +163,7 @@ MonoBehaviour:
   _inventorySystem:
     collectionOfSlots: []
   _inventorySize: 1
-  cannonPower: 50
+  cannonPower: 5
   cannonCooldownTime: 1
   cannonLoaded: 0
   cannonOnCooldown: 0

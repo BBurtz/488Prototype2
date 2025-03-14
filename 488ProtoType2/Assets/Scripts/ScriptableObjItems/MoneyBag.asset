@@ -15,8 +15,8 @@ MonoBehaviour:
   DisplaySprite: {fileID: 0}
   MaxStackSize: 1
   DisplayName: 
-  ValuableValue: 1500
-  RepairableValue: 2
-  DamageableValue: 0
-  ItemPrefab: {fileID: 964398721784567337, guid: 9f9bf82d8d4b5394eacd3515e955d93e, type: 3}
+  ValuableValue: 10000
+  RepairableValue: 15
+  DamageableValue: 1
+  ItemPrefab: {fileID: 7730325972970298347, guid: 087622851bfbb994da4a4c03cecbb0ff, type: 3}
   DisplayDescription: 

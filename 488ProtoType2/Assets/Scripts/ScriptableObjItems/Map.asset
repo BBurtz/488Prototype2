@@ -15,8 +15,8 @@ MonoBehaviour:
   DisplaySprite: {fileID: 0}
   MaxStackSize: 1
   DisplayName: 
-  ValuableValue: 275
-  RepairableValue: 10
-  DamageableValue: 0
-  ItemPrefab: {fileID: 185377657345696845, guid: df8debe07e33af2478f3db612032dc18, type: 3}
+  ValuableValue: 2570
+  RepairableValue: 15
+  DamageableValue: 1
+  ItemPrefab: {fileID: 2904563626950633619, guid: 603c3a99b1397c24ca205049247e83e4, type: 3}
   DisplayDescription: A map sure to guide ye to buried treasure

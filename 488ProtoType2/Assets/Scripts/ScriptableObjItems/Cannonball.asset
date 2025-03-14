@@ -15,8 +15,8 @@ MonoBehaviour:
   DisplaySprite: {fileID: 0}
   MaxStackSize: 1
   DisplayName: Cannonball
-  ValuableValue: 1
-  RepairableValue: 1
-  DamageableValue: 1
+  ValuableValue: 500
+  RepairableValue: 5
+  DamageableValue: 20
   ItemPrefab: {fileID: 2820057200480230558, guid: 95116ed61d7548a49b3327c7cee0bdd7, type: 3}
   DisplayDescription: We love balls argggg
