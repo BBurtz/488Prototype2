@@ -76,6 +76,11 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, whatIsGround);
         walkSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), GetComponent<Rigidbody>()));
+        if(Input.GetKeyDown(KeyCode.Delete))
+        {
+            print("HERE");
+            Application.Quit();
+        }
     }
 
     private void OnEnable()
@@ -125,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
         AttackAction.performed -= LeftClick;
         RightAction.performed -= RightClick;
     }
-
 
     private void FixedUpdate()
     {
