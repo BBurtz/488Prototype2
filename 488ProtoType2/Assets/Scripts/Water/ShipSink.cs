@@ -66,6 +66,10 @@ public class ShipSink : MonoBehaviour
             {
                 DrownScript.DrownStart();
             }
+            else
+            {
+                DrownScript.DrownOverlayImage.color = new Color(DrownScript.DrownOverlayImage.color.r, DrownScript.DrownOverlayImage.color.g, DrownScript.DrownOverlayImage.color.b, 0);
+            }
 
             yield return null;
         }
