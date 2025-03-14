@@ -41,13 +41,16 @@ public class ScoringSystem : InventoryHolder
         score = 0;
         foreach (InventoryItemData item in Temp)
         {
-            score += (int)item.ValuableValue;
+            if(item != null)
+            {
+                score += (int)item.ValuableValue;
+            }
         }
     }
 
     public void DisplayInteractUI()
     {
-        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Patch Hole [Click]");
+        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Deposit Item [Click]");
     }
     public void HideInteractUI()
     {

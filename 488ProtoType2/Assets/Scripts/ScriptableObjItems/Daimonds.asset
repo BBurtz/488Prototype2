@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Daimonds
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 0}
-  MaxStackSize: 0
+  MaxStackSize: 1
   DisplayName: 
   ValuableValue: 1000
   RepairableValue: 0

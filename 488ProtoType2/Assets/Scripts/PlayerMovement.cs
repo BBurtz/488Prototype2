@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (grounded)
         {
-            rb.AddForce(0, jumpStrength, 0, ForceMode.Force);
+            rb.AddForce(0, jumpStrength, 0, ForceMode.Impulse);
             grounded = false;
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Jump, transform.position);
         }

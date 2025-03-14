@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Map
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 0}
-  MaxStackSize: 0
+  MaxStackSize: 1
   DisplayName: 
   ValuableValue: 275
   RepairableValue: 10

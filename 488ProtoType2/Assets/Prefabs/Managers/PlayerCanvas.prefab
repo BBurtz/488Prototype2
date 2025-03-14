@@ -292,8 +292,8 @@ MonoBehaviour:
   water: {fileID: 4573587168559738092}
   timerStartY: -11
   timerEndY: -76
-  EndScrene: {fileID: 0}
-  PauseMenu: {fileID: 0}
+  EndScrene: {fileID: 3923436724788409598}
+  PauseMenu: {fileID: 3576140032203141916, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
 --- !u!1 &3923436724788409598
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +365,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4165788637429727999
 CanvasRenderer:
@@ -424,8 +424,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

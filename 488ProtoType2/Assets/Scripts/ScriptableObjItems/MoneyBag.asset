@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoneyBag
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 0}
-  MaxStackSize: 0
+  MaxStackSize: 1
   DisplayName: 
   ValuableValue: 1500
   RepairableValue: 2

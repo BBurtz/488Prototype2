@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bottle
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 0}
-  MaxStackSize: 0
+  MaxStackSize: 1
   DisplayName: 
   ValuableValue: 10000
   RepairableValue: 7
