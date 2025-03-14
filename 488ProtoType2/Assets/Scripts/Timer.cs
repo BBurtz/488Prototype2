@@ -29,6 +29,7 @@ public class Timer : Singleton<Timer>
     void Start()
     {
         currentTime = 0;
+        currentTickSpeed = 1;
         TimerCouroutine = StartCoroutine(TimerGoing());
     }
 

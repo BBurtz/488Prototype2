@@ -33,7 +33,10 @@ public class InventoryHolder : MonoBehaviour
     }
     public virtual void OnTriggerEnter(Collider collidedObject)
     {
-        HandlePickup(collidedObject);
+        if(collidedObject.gameObject.TryGetComponent<PickupInteractable>(out PickupInteractable i))
+        {
+            HandlePickup(collidedObject);
+        }
     }
     public virtual void HandlePickup(Collider collidedObject)
     {

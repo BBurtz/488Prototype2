@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTime: 0
-  maxTime: 100
+  maxTime: 120
   timerPaused: 0
   tickSpeedDuration: 0
   currentTickSpeed: 0
   baseTickSpeed: 1
+  EndScreen: {fileID: 3576140032203141916, guid: 024fb6c84d88110429964428dfc89d55, type: 3}

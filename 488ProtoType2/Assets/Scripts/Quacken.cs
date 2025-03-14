@@ -21,7 +21,7 @@ public class Quacken : MonoBehaviour
     private int currentStopIndex = 0;
     private bool isMoving = false;
     private float t = 0f;
-
+    private Vector3 origin; // Custom center point
 
     private void OnEnable()
     {
@@ -31,8 +31,13 @@ public class Quacken : MonoBehaviour
     {
         QuackenDamaged -= Damaged;
     }
+
+
     void Start()
     {
+        // Set the origin to the object's initial position so it can be placed anywhere
+        origin = transform.position;
+
         // Convert stop angles from degrees to radians
         for (int i = 0; i < stopAngles.Count; i++)
         {
@@ -125,14 +130,15 @@ public class Quacken : MonoBehaviour
     {
         float x = horizontalRadius * Mathf.Cos(t);
         float y = verticalRadius * Mathf.Sin(t);
-        Vector3 newPosition = new Vector3(x, transform.position.y, y);
+        Vector3 newPosition = origin + new Vector3(x, transform.position.y - origin.y, y); // Maintain manual height adjustments
+
         transform.position = newPosition;
 
-        //rotate to always face the center (0,0), preserving tilt from Bob()
-        Vector3 directionToCenter = -new Vector3(x, 0, y).normalized;
+        // Rotate to always face the center (origin), preserving tilt from Bob()
+        Vector3 directionToCenter = -(newPosition - origin).normalized;
         float angle = Mathf.Atan2(directionToCenter.x, directionToCenter.z) * Mathf.Rad2Deg;
 
-        //keeping the existing X/Z tilt but updateing the Y-axis rotation
+        // Keep existing X/Z tilt but update the Y-axis rotation
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x, angle, transform.eulerAngles.z);
     }
 
