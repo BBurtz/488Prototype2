@@ -139,6 +139,7 @@ public class Lootbox : MonoBehaviour, IInteractable
                 }
             }
 
+
             PickRandomItemToInstantiate();
 
         }
@@ -185,28 +186,34 @@ public class Lootbox : MonoBehaviour, IInteractable
 
     void PickRandomItemToInstantiate()
     {
-
-        int randomItem = Random.Range(0, itemsFromLists.Count);
-
-        var tempItem = itemsFromLists[randomItem];
-
-        //GetComponent<Animator>().SetTrigger("Open");
-
-        instantiatedObj = Instantiate(tempItem.ItemPrefab, ChestPos.position, ChestPos.parent.rotation);
-
-        instantiatedObj.transform.parent = ChestPos;
-
-        if (instantiatedObj.TryGetComponent(out PickupInteractable pi))
+        
+        if(itemsFromLists.Count >= 0)
         {
-            pi.SetHeldInHand(true);
 
-            if(instantiatedObj.TryGetComponent(out Rigidbody rb))
+            int randomItem = Random.Range(0, itemsFromLists.Count);
+
+            var tempItem = itemsFromLists[randomItem];
+
+            //GetComponent<Animator>().SetTrigger("Open");
+
+            instantiatedObj = Instantiate(tempItem.ItemPrefab, ChestPos.position, ChestPos.parent.rotation);
+
+            instantiatedObj.transform.parent = ChestPos;
+
+            if (instantiatedObj.TryGetComponent(out PickupInteractable pi))
             {
+                pi.SetHeldInHand(true);
 
-                rb.isKinematic = true;
+                if (instantiatedObj.TryGetComponent(out Rigidbody rb))
+                {
 
+                    rb.isKinematic = true;
+
+                }
             }
+
         }
+  
     }
 
     public void DisplayInteractUI()
