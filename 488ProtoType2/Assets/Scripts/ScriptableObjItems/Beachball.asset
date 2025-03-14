@@ -18,5 +18,5 @@ MonoBehaviour:
   ValuableValue: 100
   RepairableValue: 12
   DamageableValue: 0
-  ItemPrefab: {fileID: 919132149155446097, guid: e6057b204d1557347b25eeafcc43fbe1, type: 3}
+  ItemPrefab: {fileID: 2984311740292585006, guid: eb87b5067f0e3d745b5dc2eafc5dbec2, type: 3}
   DisplayDescription: 

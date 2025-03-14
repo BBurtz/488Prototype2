@@ -9,6 +9,8 @@
                             - Player Movement, both normal and treadmill
                             - Calls interaction functions
 *****************************************************************************/
+using FMOD.Studio;
+using FMODUnity;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -29,8 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private bool CurrentlyMoving;
 
     public GameObject Camera;
-    public GameObject EndScrene;
-    public GameObject PauseMenu;
 
     public PlayerInput playerControls;
 
@@ -51,15 +51,15 @@ public class PlayerMovement : MonoBehaviour
 
     Coroutine movementcoroutineInstance;
 
-    
+    private EventInstance walkSFX;
+
 
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "EndLine")
         {
-            Cursor.lockState = CursorLockMode.None;
-            EndScrene.SetActive(true);
+            CanvasInteractionBehavior.KillToggle?.Invoke();
         }
     }
 
@@ -70,10 +70,12 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         //audio
+        walkSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Footsteps);
     }
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, whatIsGround);
+        walkSFX.set3DAttributes(RuntimeUtils.To3DAttributes(GetComponent<Transform>(), GetComponent<Rigidbody>()));
     }
 
     private void OnEnable()
@@ -109,24 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void pause(InputAction.CallbackContext context)
     {
-        if (PauseMenu == null)
-        {
-            return;
-        }
-
-        if (!PauseMenu.activeSelf)
-        {
-            PauseMenu.SetActive(true);
-            Time.timeScale = 0;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else if (PauseMenu.activeSelf)
-        {
-            PauseMenu.SetActive(false);
-            Time.timeScale = 1;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
+        CanvasInteractionBehavior.PauseToggle?.Invoke();
     }
 
     private void OnDisable()
@@ -144,21 +129,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-            if (!CurrentlyMoving)
-            {
-                MoveVal = Vector3.zero;
-            }
-            var c = MoveVal;
-            Vector3 moveDirection = Camera.transform.forward * c.y + Camera.transform.right * c.x;
-            moveDirection.y = 0;
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
-            Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-            if (flatVel.magnitude > moveSpeed)
-            {
-                Vector3 limitedVel = flatVel.normalized * moveSpeed;
-                rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
-            }
+        if (!CurrentlyMoving)
+        {
+            MoveVal = Vector3.zero;
+        }
+        var c = MoveVal;
+        Vector3 moveDirection = Camera.transform.forward * c.y + Camera.transform.right * c.x;
+        moveDirection.y = 0;
+        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        
+        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+        if (flatVel.magnitude > moveSpeed)
+        {
+            UpdateWalkSFX();
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+        }
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -167,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(0, jumpStrength, 0, ForceMode.Force);
             grounded = false;
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Jump, transform.position);
         }
     }
 
@@ -202,6 +189,22 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void UpdateWalkSFX()
+    {
+        if ((rb.linearVelocity.x > 0 || rb.linearVelocity.z > 0) && grounded)
+        {
+            PLAYBACK_STATE playbackState;
+            walkSFX.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                walkSFX.start();
+            }
+        }
+        else
+        {
+            walkSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+    }
 
     /// <summary>
     /// Coroutine for movement under normal conditions
