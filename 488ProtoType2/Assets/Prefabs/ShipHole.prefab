@@ -240,16 +240,32 @@ PrefabInstance:
       value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: ShapeModule.type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 30.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
       propertyPath: CollisionModule.type
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
       propertyPath: CollisionModule.enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 0.09
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: TrailModule.lifetime.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
       propertyPath: CollisionModule.maxKillSpeed
@@ -265,7 +281,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 9.17
+      value: 2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7068875562405404785, guid: 997259ad51981354fa0cb1e0c482287a, type: 3}
       propertyPath: TrailModule.widthOverTrail.maxCurve.m_Curve.Array.data[0].time
