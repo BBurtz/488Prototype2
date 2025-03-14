@@ -1,11 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Drowning : MonoBehaviour
 {
     [Tooltip("Time until player drowns when under water.")]
     public float TimeUntilDrown = 1;
+
+    [Tooltip("Image that indicates player drowning.")]
+    public Image DrownOverlayImage;
 
     private Coroutine drownCoroutine;
     private ShipSink shipSinking;
@@ -39,11 +43,15 @@ public class Drowning : MonoBehaviour
         {
             updatedTime += Time.deltaTime;
             //if player resurfaces
-            if (shipSinking.Water.transform.position.y > shipSinking.playerTransform.position.y + shipSinking.DrowningOffset)
+            if (shipSinking.Water.transform.position.y < shipSinking.playerTransform.position.y + shipSinking.DrowningOffset)
             {
-                StopCoroutine(Drown());
+                StopCoroutine(drownCoroutine);
                 drownCoroutine = null;
             }
+
+            //drowning indication
+            float drownOverlayImageAlpha = Mathf.Lerp(0, 1, updatedTime / TimeUntilDrown);
+            DrownOverlayImage.color = new Color(DrownOverlayImage.color.r, DrownOverlayImage.color.g, DrownOverlayImage.color.b, Mathf.Pow(drownOverlayImageAlpha, 4));
 
             yield return new WaitForEndOfFrame();
         }
@@ -54,4 +62,5 @@ public class Drowning : MonoBehaviour
 
         yield return null;
     }
+
 }

@@ -30,6 +30,7 @@ public class ShipSink : MonoBehaviour
     void Start()
     {
         playerTransform = FindFirstObjectByType<PlayerMovement>().transform;
+        waterHeightY = Water.transform.position.y;
         DrownScript = FindFirstObjectByType<Drowning>();
         startingY = transform.position.y;
 
@@ -58,8 +59,7 @@ public class ShipSink : MonoBehaviour
                 shipTransformY -= shipMoveIncrement * Time.deltaTime;
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x, shipTransformY, gameObject.transform.position.z);
             }
-
-            waterHeightY = Water.transform.position.y;
+            
 
             //calls to start drowning
             if (playerTransform.position.y + DrowningOffset <= waterHeightY)
@@ -81,6 +81,15 @@ public class ShipSink : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(ShipHeight, 1);
         Gizmos.DrawLine(gameObject.transform.position, ShipHeight);
+
+
+        Gizmos.color = Color.green;
+        if (playerTransform == null)
+        {
+            playerTransform = FindFirstObjectByType<PlayerMovement>().transform;
+        }
+        float offsetLocation = playerTransform.position.y + DrowningOffset;
+        Gizmos.DrawCube(new Vector3(playerTransform.position.x, playerTransform.position.y + DrowningOffset, playerTransform.position.z), new Vector3(0.5f, 0.5f, 0.5f));
 
     }
 }
