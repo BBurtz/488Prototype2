@@ -26,6 +26,7 @@ public class Drowning : MonoBehaviour
     {
         if (drownCoroutine == null)
         {
+            DrownOverlayImage.color = new Color(DrownOverlayImage.color.r, DrownOverlayImage.color.g, DrownOverlayImage.color.b, 0);
             drownCoroutine = StartCoroutine(Drown());
         }
     }
@@ -45,6 +46,7 @@ public class Drowning : MonoBehaviour
             //if player resurfaces
             if (shipSinking.Water.transform.position.y < shipSinking.playerTransform.position.y + shipSinking.DrowningOffset)
             {
+                DrownOverlayImage.color = new Color(DrownOverlayImage.color.r, DrownOverlayImage.color.g, DrownOverlayImage.color.b, 0);
                 StopCoroutine(drownCoroutine);
                 drownCoroutine = null;
             }
