@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxStackSize: 1
   DisplayName: 
   ValuableValue: 10000
-  RepairableValue: 2
+  RepairableValue: 7
   DamageableValue: 10
   ItemPrefab: {fileID: 3287372704322880982, guid: f04400385fc5db14480e1b4750768c3d, type: 3}
   DisplayDescription: A bottle of every pirate's favorite drink. Appears to be unopened

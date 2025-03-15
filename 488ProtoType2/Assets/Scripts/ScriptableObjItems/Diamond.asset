@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxStackSize: 1
   DisplayName: 
   ValuableValue: 25000
-  RepairableValue: 2
+  RepairableValue: 10
   DamageableValue: 25
   ItemPrefab: {fileID: 5613676653529230931, guid: f950655350a2c9e4986e724e990ac242, type: 3}
   DisplayDescription: 

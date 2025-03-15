@@ -17,6 +17,6 @@ MonoBehaviour:
   DisplayName: 
   ValuableValue: 2570
   RepairableValue: 15
-  DamageableValue: 1
+  DamageableValue: 5
   ItemPrefab: {fileID: 2904563626950633619, guid: 603c3a99b1397c24ca205049247e83e4, type: 3}
   DisplayDescription: A map sure to guide ye to buried treasure
