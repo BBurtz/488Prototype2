@@ -1,24 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class ScoringSystem : InventoryHolder
+public class ScoringSystem : InventoryHolder, IInteractable
 {
     public int score;
     public TMPro.TMP_Text ScoringText;
-    [SerializeField][ReadOnly] InventoryItemData HoleItemData;
+    public GameObject InteractPrompt;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        UpdateScore(); 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        score = 0;
+        //UpdateScore();
     }
 
     public override void HandlePickup(Collider collidedObject)
@@ -36,17 +30,25 @@ public class ScoringSystem : InventoryHolder
 
     public void UpdateScore()
     {
-        List<InventoryItemData> Temp =_inventorySystem.GetInventoryItemList();
+        List<InventoryItemData> Temp = _inventorySystem.GetInventoryItemList();
         score = 0;
         foreach (InventoryItemData item in Temp)
         {
-            score += (int)item.ValuableValue;
+            if (item != null)
+            {
+                score += (int)item.ValuableValue;
+            }
         }
     }
 
+    public void Interact(GameObject go)
+    {
+        var playerHands = go.GetComponent<Hands>();
+        playerHands.DropObject(playerHands.GetTargetedHand());
+    }
     public void DisplayInteractUI()
     {
-        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Patch Hole [Click]");
+        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Deposit Item [Click]");
     }
     public void HideInteractUI()
     {

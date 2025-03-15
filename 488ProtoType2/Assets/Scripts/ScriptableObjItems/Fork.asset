@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Fork
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 0}
-  MaxStackSize: 0
+  MaxStackSize: 1
   DisplayName: 
   ValuableValue: 1500
-  RepairableValue: 4
-  DamageableValue: 0
-  ItemPrefab: {fileID: 919132149155446097, guid: aeab45c3489d95e4a99003ae465c49df, type: 3}
+  RepairableValue: 5
+  DamageableValue: 20
+  ItemPrefab: {fileID: 564359975530410553, guid: 8f1910c4e2b2d194a8609ccece382c93, type: 3}
   DisplayDescription: 

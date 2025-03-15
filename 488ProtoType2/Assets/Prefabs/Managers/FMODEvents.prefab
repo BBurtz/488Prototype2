@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &610165186573252762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7396638094212136365}
+  - component: {fileID: 7786942757681489118}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7396638094212136365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610165186573252762}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7786942757681489118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610165186573252762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ff4b26036769284db23f7f8fafe1784, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TempBGM>k__BackingField:
+    Guid:
+      Data1: 1046554900
+      Data2: 1179764441
+      Data3: 720860590
+      Data4: 1380272192
+    Path: event:/Music
+  <Cannon>k__BackingField:
+    Guid:
+      Data1: -1142018299
+      Data2: 1088340127
+      Data3: -135945285
+      Data4: 1522575670
+    Path: event:/ItemSpecific/Cannon
+  <Drop>k__BackingField:
+    Guid:
+      Data1: 2118538588
+      Data2: 1263602018
+      Data3: 202738051
+      Data4: 8513885
+    Path: event:/ItemSpecific/Drop
+  <Pickup>k__BackingField:
+    Guid:
+      Data1: -1653156985
+      Data2: 1313190403
+      Data3: 321658269
+      Data4: -1667691712
+    Path: event:/ItemSpecific/Pickup
+  <Repair>k__BackingField:
+    Guid:
+      Data1: -540047000
+      Data2: 1234178623
+      Data3: -625840488
+      Data4: -1653364631
+    Path: event:/ItemSpecific/RepairHole
+  <Ambience>k__BackingField:
+    Guid:
+      Data1: 1183832986
+      Data2: 1089894784
+      Data3: -912537175
+      Data4: -803935775
+    Path: event:/Ambience
+  <ChestOpen>k__BackingField:
+    Guid:
+      Data1: -535931083
+      Data2: 1173984397
+      Data3: 1791120521
+      Data4: -636468252
+    Path: event:/ChestOpen
+  <Footsteps>k__BackingField:
+    Guid:
+      Data1: -965366373
+      Data2: 1104329542
+      Data3: -1970863481
+      Data4: 1866152067
+    Path: event:/Footsteps
+  <Jump>k__BackingField:
+    Guid:
+      Data1: 897948098
+      Data2: 1189286142
+      Data3: -353117035
+      Data4: -1675509609
+    Path: event:/Jump
+  <LootUp>k__BackingField:
+    Guid:
+      Data1: -82408760
+      Data2: 1202571506
+      Data3: 2076452799
+      Data4: -881021726
+    Path: event:/LootUp

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Beachball
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 0}
-  MaxStackSize: 0
+  MaxStackSize: 1
   DisplayName: 
-  ValuableValue: 100
+  ValuableValue: 750
   RepairableValue: 12
-  DamageableValue: 0
-  ItemPrefab: {fileID: 919132149155446097, guid: e6057b204d1557347b25eeafcc43fbe1, type: 3}
+  DamageableValue: 1
+  ItemPrefab: {fileID: 7958113460269921321, guid: 5db465d5a7253784bb032acc994e9079, type: 3}
   DisplayDescription: 
