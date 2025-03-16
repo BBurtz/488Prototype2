@@ -29,8 +29,11 @@ public class PlayerMovement : MonoBehaviour
 
     public bool CurrentlyJumping;
     private bool CurrentlyMoving;
+    private bool canEscape;
 
     public GameObject Camera;
+    public GameObject EscapeText;
+    public GameObject EscapeMenu;
 
     public PlayerInput playerControls;
 
@@ -60,6 +63,20 @@ public class PlayerMovement : MonoBehaviour
         if(other.tag == "EndLine")
         {
             CanvasInteractionBehavior.KillToggle?.Invoke();
+        }
+        if(other.tag == "EscapeShip")
+        {
+            canEscape = true;
+            EscapeText.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "EscapeShip")
+        {
+            canEscape=false;
+            EscapeText.SetActive(false);
         }
     }
 
@@ -169,7 +186,13 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="context"></param>
     private void interact(InputAction.CallbackContext context)
     {
-       
+       if(canEscape)
+        {
+            EscapeMenu.SetActive(true);
+            Time.timeScale = 0f;
+
+            PauseAction.started -= pause;
+        }
     }
 
 
