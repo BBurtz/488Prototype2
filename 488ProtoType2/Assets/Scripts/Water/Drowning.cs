@@ -26,7 +26,7 @@ public class Drowning : MonoBehaviour
     {
         if (drownCoroutine == null)
         {
-            DrownOverlayImage.color = new Color(DrownOverlayImage.color.r, DrownOverlayImage.color.g, DrownOverlayImage.color.b, 0);
+            DrownOverlayImage.color = new Color(DrownOverlayImage.color.r, DrownOverlayImage.color.g, DrownOverlayImage.color.b, 0.5f);
             drownCoroutine = StartCoroutine(Drown());
         }
     }
@@ -52,7 +52,7 @@ public class Drowning : MonoBehaviour
             }
 
             //drowning indication
-            float drownOverlayImageAlpha = Mathf.Lerp(0, 1, updatedTime / TimeUntilDrown);
+            float drownOverlayImageAlpha = Mathf.Lerp(0.5f, 1, updatedTime / TimeUntilDrown);
             DrownOverlayImage.color = new Color(DrownOverlayImage.color.r, DrownOverlayImage.color.g, DrownOverlayImage.color.b, Mathf.Pow(drownOverlayImageAlpha, 4));
 
             yield return new WaitForEndOfFrame();

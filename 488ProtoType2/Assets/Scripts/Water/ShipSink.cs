@@ -22,6 +22,7 @@ public class ShipSink : MonoBehaviour
     private Drowning DrownScript;
     private float startingY;
     private float waterHeightY;
+    private Timer timerScript;
 
     public float ShipPercent => Mathf.InverseLerp(startingY, ShipHeightY, transform.position.y);
 
@@ -32,6 +33,7 @@ public class ShipSink : MonoBehaviour
         playerTransform = FindFirstObjectByType<PlayerMovement>().transform;
         waterHeightY = Water.transform.position.y;
         DrownScript = FindFirstObjectByType<Drowning>();
+        timerScript = FindFirstObjectByType<Timer>();
         startingY = transform.position.y;
 
         //calculates how much to move the water every frame
@@ -54,18 +56,23 @@ public class ShipSink : MonoBehaviour
         while (true)
         {
             //moves water
+            /*
             if (gameObject.transform.position.y >= ShipHeightY)
             {
                 shipTransformY -= shipMoveIncrement * Time.deltaTime;
                 gameObject.transform.position = new Vector3(gameObject.transform.position.x, shipTransformY, gameObject.transform.position.z);
             }
-            
+            */
+
+            float y = Mathf.Lerp(startingY, ShipHeightY, timerScript.GetNormalizedTime());
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, y, gameObject.transform.position.z);
 
             //calls to start drowning
             if (playerTransform.position.y + DrowningOffset <= waterHeightY)
             {
                 DrownScript.DrownStart();
             }
+
             else
             {
                 DrownScript.DrownOverlayImage.color = new Color(DrownScript.DrownOverlayImage.color.r, DrownScript.DrownOverlayImage.color.g, DrownScript.DrownOverlayImage.color.b, 0);

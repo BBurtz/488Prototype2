@@ -10,9 +10,11 @@ public class ShipHole : InventoryHolder, IInteractable
     [SerializeField][ReadOnly] bool patchOnCoolDown;
     [SerializeField][ReadOnly] InventoryItemData HoleItemData;
     [SerializeField][ReadOnly] GameObject HoleObj;
+    private ParticleSystem particleSystem;
     public void Start()
     {
         patchOnCoolDown = false;
+        particleSystem = gameObject.GetComponentInChildren<ParticleSystem>();
     }
     public bool GetIsFlowing()
     { 
@@ -30,6 +32,8 @@ public class ShipHole : InventoryHolder, IInteractable
             HoleObj = Instantiate(HoleItemData.ItemPrefab, PatchLoc.position, Quaternion.identity);
             HoleObj.transform.parent = PatchLoc;
             HoleItemData = HoleObj.GetComponent<PickupInteractable>().GetItem();
+            particleSystem.Stop(false);
+
             if (HoleObj.TryGetComponent(out PickupInteractable pi))
             {
                 pi.DisableRB();
@@ -60,6 +64,7 @@ public class ShipHole : InventoryHolder, IInteractable
             HoleItemData = null;
             Destroy(HoleObj);
             HoleObj = null;
+            particleSystem.Play(false);
             StartCoroutine(CoolDown(patchCoolDown));
         }
         else
