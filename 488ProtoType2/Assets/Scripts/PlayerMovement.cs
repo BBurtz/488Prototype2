@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         {
             EscapeMenu.SetActive(true);
             Time.timeScale = 0f;
-
+            Cursor.lockState = CursorLockMode.None;
             PauseAction.started -= pause;
         }
     }
