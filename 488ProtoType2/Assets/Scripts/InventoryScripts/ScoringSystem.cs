@@ -13,6 +13,7 @@ public class ScoringSystem : InventoryHolder, IInteractable
     {
         score = 0;
         //UpdateScore();
+        UpdateText();
     }
 
     public override void HandlePickup(Collider collidedObject)
@@ -39,6 +40,12 @@ public class ScoringSystem : InventoryHolder, IInteractable
                 score += (int)item.ValuableValue;
             }
         }
+        UpdateText();
+    }
+
+    private void UpdateText()
+    {
+        ScoringText.text = "You Made It Out With $ " + score;
     }
 
     public void Interact(GameObject go)
