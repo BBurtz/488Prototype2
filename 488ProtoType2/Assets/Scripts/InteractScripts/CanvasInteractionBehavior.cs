@@ -2,6 +2,7 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
 {
@@ -100,4 +101,22 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
         Cursor.lockState = CursorLockMode.None;
         EndScrene.SetActive(true);
     }
+
+    public void Play()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+        print("WORKS");
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
+    }
+
 }
