@@ -222,7 +222,13 @@ public class Lootbox : MonoBehaviour, IInteractable
 
             CanvasInteractionBehavior.ShowInteractUI?.Invoke("Open Chest [Click]");
 
-        }    
+        }
+        else if(isOpen && instantiatedObj == null)
+        {
+
+            CanvasInteractionBehavior.ShowInteractUI?.Invoke("Item Already Picked!");
+
+        }
 
     }
 
