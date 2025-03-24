@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 0}
   MaxStackSize: 1
-  DisplayName: 
+  DisplayName: BeachBall
   ValuableValue: 750
   RepairableValue: 12
   DamageableValue: 20

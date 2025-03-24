@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 0}
   MaxStackSize: 1
-  DisplayName: 
+  DisplayName: Diamond
   ValuableValue: 25000
   RepairableValue: 10
   DamageableValue: 25
