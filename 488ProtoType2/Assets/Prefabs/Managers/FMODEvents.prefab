@@ -53,11 +53,11 @@ MonoBehaviour:
     Path: event:/Music
   <Cannon>k__BackingField:
     Guid:
-      Data1: -1142018299
-      Data2: 1088340127
-      Data3: -135945285
-      Data4: 1522575670
-    Path: event:/ItemSpecific/Cannon
+      Data1: -680015836
+      Data2: 1237840826
+      Data3: -1345900664
+      Data4: -2081814386
+    Path: event:/Cannon
   <Drop>k__BackingField:
     Guid:
       Data1: 2118538588
@@ -74,11 +74,11 @@ MonoBehaviour:
     Path: event:/ItemSpecific/Pickup
   <Repair>k__BackingField:
     Guid:
-      Data1: -540047000
-      Data2: 1234178623
-      Data3: -625840488
-      Data4: -1653364631
-    Path: event:/ItemSpecific/RepairHole
+      Data1: 1706975715
+      Data2: 1092669851
+      Data3: -1057546874
+      Data4: -1643086683
+    Path: event:/Repair
   <Ambience>k__BackingField:
     Guid:
       Data1: 1183832986
@@ -100,6 +100,13 @@ MonoBehaviour:
       Data3: -1970863481
       Data4: 1866152067
     Path: event:/Footsteps
+  <HoleLeak>k__BackingField:
+    Guid:
+      Data1: 154301707
+      Data2: 1317987028
+      Data3: 6103726
+      Data4: 1332977146
+    Path: event:/HoleLeak
   <Jump>k__BackingField:
     Guid:
       Data1: 897948098

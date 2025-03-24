@@ -1,6 +1,10 @@
 using System.Collections;
+using System.Net.NetworkInformation;
+using FMODUnity;
 using Unity.VisualScripting;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
 
 public class ShipHole : InventoryHolder, IInteractable
 {
@@ -38,6 +42,7 @@ public class ShipHole : InventoryHolder, IInteractable
             {
                 pi.DisableRB();
                 pi.SetHeldInHand(true);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.Repair, this.transform.position);
             }
             StopLeakForTime(HoleItemData.RepairableValue);
         }
