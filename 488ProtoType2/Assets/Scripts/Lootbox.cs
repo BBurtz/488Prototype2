@@ -32,6 +32,7 @@ public class Lootbox : MonoBehaviour, IInteractable
         if (!isOpen)
         {
             isOpen = true;
+            GetComponent<Animator>().SetBool("IsOpen", true);
 
             StopCoroutine(WaitForPickup());
 
@@ -156,9 +157,8 @@ public class Lootbox : MonoBehaviour, IInteractable
 
             }
 
-            isOpen = false;       
-
-            //GetComponent<Animator>().SetTrigger("Close");
+            isOpen = false;
+            GetComponent<Animator>().SetBool("IsOpen", false);
 
         }
         //player picked up the item and is trying to roll again
@@ -194,8 +194,6 @@ public class Lootbox : MonoBehaviour, IInteractable
 
             var tempItem = itemsFromLists[randomItem];
 
-            //GetComponent<Animator>().SetTrigger("Open");
-
             instantiatedObj = Instantiate(tempItem.ItemPrefab, ChestPos.position, ChestPos.parent.rotation);
 
             instantiatedObj.transform.parent = ChestPos;
@@ -219,7 +217,12 @@ public class Lootbox : MonoBehaviour, IInteractable
     public void DisplayInteractUI()
     {
 
-        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Pickup: " + gameObject.name + " [Click]");
+        if(!isOpen || (isOpen && instantiatedObj != null))
+        {
+
+            CanvasInteractionBehavior.ShowInteractUI?.Invoke("Pickup: " + gameObject.name + " [Click]");
+
+        }    
 
     }
 
