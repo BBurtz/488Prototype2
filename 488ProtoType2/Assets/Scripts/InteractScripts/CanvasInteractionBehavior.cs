@@ -104,6 +104,7 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
 
     public void Play()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 
