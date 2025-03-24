@@ -6,6 +6,7 @@ public class ScoringSystem : InventoryHolder, IInteractable
 {
     public int score;
     public TMPro.TMP_Text ScoringText;
+    public TMPro.TMP_Text InGameText;
     public GameObject InteractPrompt;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,6 +47,7 @@ public class ScoringSystem : InventoryHolder, IInteractable
     private void UpdateText()
     {
         ScoringText.text = "You Made It Out With $ " + score;
+        InGameText.text = "$ " + score;
     }
 
     public void Interact(GameObject go)

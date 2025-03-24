@@ -80656,6 +80656,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8487588697173049551, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
   m_PrefabInstance: {fileID: 1697510885}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1697510888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7381969884453741570, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
+  m_PrefabInstance: {fileID: 1697510885}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1697510889 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3923436724788409598, guid: fccd723fe7cba9045a038412e6e852bd, type: 3}
@@ -94015,6 +94026,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7041734104721637268, guid: c0f00ec5f14260b49a344b8ee0771b93, type: 3}
+      propertyPath: InGameText
+      value: 
+      objectReference: {fileID: 1697510888}
     - target: {fileID: 7041734104721637268, guid: c0f00ec5f14260b49a344b8ee0771b93, type: 3}
       propertyPath: ScoringText
       value: 
