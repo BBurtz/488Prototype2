@@ -14,6 +14,9 @@ public class Drowning : MonoBehaviour
     private Coroutine drownCoroutine;
     private ShipSink shipSinking;
 
+    [Tooltip("The ending is under Managers. Put that here!")]
+    public GameObject EndScreen;
+
     private void Start()
     {
         shipSinking = FindFirstObjectByType<ShipSink>();
@@ -60,7 +63,11 @@ public class Drowning : MonoBehaviour
 
         //DIE
         Debug.Log("dead");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 0;
+        EndScreen.SetActive(true);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+
 
         yield return null;
     }
