@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c7010d602cd1b8c4ba4206ea57529a19
+guid: aa9efe7ca74f7c6448468930765a0682
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainMenuBack_Buttons_1
+      name: MainMenuBackUIFIX_1
       rect:
         serializedVersion: 2
-        x: 1025
-        y: 302
-        width: 612
-        height: 739
+        x: 976
+        y: 737
+        width: 258
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,18 +138,84 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69a6638fc6785d2459e93cfe002309ba
-      internalID: 94440915
+      spriteID: f983dd012fb80a0418dcafec47402961
+      internalID: 44825480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MainMenuBack_Buttons_2
+      name: MainMenuBackUIFIX_2
       rect:
         serializedVersion: 2
-        x: 1109
-        y: 156
+        x: 1312
+        y: 775
+        width: 48
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35a851cc4a2b496489debd631826891f
+      internalID: 198193186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuBackUIFIX_3
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 773
+        width: 51
+        height: 215
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 023468e95808b564680b90537a20b824
+      internalID: -1506528868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuBackUIFIX_4
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 303
+        width: 612
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df52299490859f04aac83d01fe4fbcfc
+      internalID: -1482332771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MainMenuBackUIFIX_5
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 115
         width: 438
         height: 107
       alignment: 0
@@ -160,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57be4d4a04d26c04d8c5cc0ade3a6d19
-      internalID: 2058074717
+      spriteID: 6949a649bb6eab24daee8fcefd94a6e9
+      internalID: 1093256323
       vertices: []
       indices: 
       edges: []
@@ -170,7 +236,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e5971a9aa2e66bc4aaf9e1c780d31c8a
+    spriteID: 17c0cce08f0219841820b81588b6922e
     internalID: 0
     vertices: []
     indices: 
@@ -180,9 +246,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MainMenuBack_Buttons_0: 2080192861
-      MainMenuBack_Buttons_1: 94440915
-      MainMenuBack_Buttons_2: 2058074717
+      MainMenuBackUIFIX_0: 1836865889
+      MainMenuBackUIFIX_1: 44825480
+      MainMenuBackUIFIX_2: 198193186
+      MainMenuBackUIFIX_3: -1506528868
+      MainMenuBackUIFIX_4: -1482332771
+      MainMenuBackUIFIX_5: 1093256323
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
