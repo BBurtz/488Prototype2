@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction RightAction;
     private InputAction PauseAction;
 
-    private bool grounded;
+    public bool grounded;
 
     [SerializeField] private LayerMask whatIsGround;
 
