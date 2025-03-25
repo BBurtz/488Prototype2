@@ -29,8 +29,11 @@ public class PlayerMovement : MonoBehaviour
 
     public bool CurrentlyJumping;
     private bool CurrentlyMoving;
+    private bool canEscape;
 
     public GameObject Camera;
+    public GameObject EscapeText;
+    public GameObject EscapeMenu;
 
     public PlayerInput playerControls;
 
@@ -41,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction RightAction;
     private InputAction PauseAction;
 
-    private bool grounded;
+    public bool grounded;
 
     [SerializeField] private LayerMask whatIsGround;
 
@@ -60,6 +63,20 @@ public class PlayerMovement : MonoBehaviour
         if(other.tag == "EndLine")
         {
             CanvasInteractionBehavior.KillToggle?.Invoke();
+        }
+        if(other.tag == "EscapeShip")
+        {
+            canEscape = true;
+            EscapeText.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "EscapeShip")
+        {
+            canEscape=false;
+            EscapeText.SetActive(false);
         }
     }
 
@@ -145,10 +162,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         if (flatVel.magnitude > moveSpeed)
         {
-            UpdateWalkSFX();
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
         }
+        UpdateWalkSFX();
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -169,7 +186,13 @@ public class PlayerMovement : MonoBehaviour
     /// <param name="context"></param>
     private void interact(InputAction.CallbackContext context)
     {
-       
+       if(canEscape)
+        {
+            EscapeMenu.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            PauseAction.started -= pause;
+        }
     }
 
 
@@ -195,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateWalkSFX()
     {
-        if ((rb.linearVelocity.x > 0 || rb.linearVelocity.z > 0) && grounded)
+        if ((rb.linearVelocity.x > 0.01 || rb.linearVelocity.z > 0.01) && grounded)
         {
             PLAYBACK_STATE playbackState;
             walkSFX.getPlaybackState(out playbackState);

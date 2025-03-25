@@ -9,22 +9,27 @@ public class Hands : MonoBehaviour
     [SerializeField] private Transform RightHandTransform;
     [Tooltip("For scaling objects in hand")][SerializeField] private float Handsize;
     [SerializeField] private float throwStrength;
+
     //public InventoryItemData testData;
 
     private InventorySystem leftHand;
     private InventorySystem rightHand;
     private Camera _camera;
     private GameObject _targetGameObj;
-
-    //[SerializeField] private GameObject _targetGameObj;
     private IInteractable _interactable;
     private bool _canInteract;
     private bool leftHandTargeted;
-
     //raycast variables
     private RaycastHit _colliderHit;
     [SerializeField] private float _maxInteractDistance;
     [SerializeField] LayerMask _layerToIgnore;
+
+    public float handCycleSpeed;
+    public float moveThreshold;
+    public float maxDeviation;
+    private Vector3 leftHandStartPos, rightHandStartPos;
+    private Rigidbody _playerRb;
+    private PlayerMovement _player;
 
     private void Start()
     {
@@ -33,7 +38,120 @@ public class Hands : MonoBehaviour
         _camera = Camera.main;
         StartDetectingInteractions();
         leftHandCalled.AddListener(InteractPressed);
+        _player = GetComponent<PlayerMovement>();
+        _playerRb = GetComponent<Rigidbody>();
+
+        leftHandStartPos = LeftHandTransform.localPosition;
+        rightHandStartPos = RightHandTransform.localPosition;
+        StartCoroutine(MoveHands());
     }
+
+
+    /// <summary>
+    /// There was not sufficient time in the prototyping schedule for me to use
+    /// the animator to make hands, as much as I would have liked to in order 
+    /// to make a better looking run cycle. In the interest of time and 
+    /// prioritizing other parts of development, I took to the internet to make 
+    /// a math-based run cycle.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator MoveHands()
+    {
+        float elapsed = 0f;
+        float startA = LeftHandTransform.localPosition.y;
+        float startB = RightHandTransform.localPosition.y;
+        bool forward = true;
+        bool wasMoving = false;
+        float transitionDuration = 0.3f;
+
+        while (true)
+        {
+            elapsed = 0f;
+
+            if (_playerRb.linearVelocity.magnitude > moveThreshold)
+            {
+                if (!wasMoving)
+                {
+                    float transitionElapsed = 0f;
+
+                    float targetA = startA - maxDeviation;
+                    float targetB = startB + maxDeviation;
+
+                    while (transitionElapsed < transitionDuration)
+                    {
+                        transitionElapsed += Time.deltaTime;
+                        float t = transitionElapsed / transitionDuration;
+                        t = Mathf.Clamp01(t * t * (3f - 2f * t)); //more direct easing than smoothlerp
+
+                        LeftHandTransform.localPosition = new Vector3(
+                            LeftHandTransform.localPosition.x, Mathf.Lerp(startA, targetA, t), LeftHandTransform.localPosition.z);
+
+                        RightHandTransform.localPosition = new Vector3(
+                            RightHandTransform.localPosition.x, Mathf.Lerp(startB, targetB, t), RightHandTransform.localPosition.z);
+
+                        yield return null;
+                    }
+
+                    wasMoving = true;
+                }
+
+                //crap ton of ternary operators to determine normal movement direction for left/right
+                float fromA = forward ? startA - maxDeviation : startA + maxDeviation;
+                float toA = forward ? startA + maxDeviation : startA - maxDeviation;
+                float fromB = forward ? startB + maxDeviation : startB - maxDeviation;
+                float toB = forward ? startB - maxDeviation : startB + maxDeviation;
+
+                float adjustedDuration = _playerRb.linearVelocity.magnitude / handCycleSpeed;
+
+                while (elapsed < adjustedDuration)
+                {
+                    elapsed += Time.deltaTime;
+                    float t = elapsed / adjustedDuration;
+                    t = Mathf.Clamp01(t * t * (3f - 2f * t)); //more aggressive easing, similar to above
+
+                    LeftHandTransform.localPosition = new Vector3(
+                        LeftHandTransform.localPosition.x, Mathf.Lerp(fromA, toA, t), LeftHandTransform.localPosition.z);
+
+                    RightHandTransform.localPosition = new Vector3(
+                        RightHandTransform.localPosition.x, Mathf.Lerp(fromB, toB, t), RightHandTransform.localPosition.z);
+
+                    yield return null;
+                }
+
+                forward = !forward;
+            }
+            else
+            {
+                if (wasMoving)
+                {
+                    float returnElapsed = 0f;
+                    Vector3 startPosA = LeftHandTransform.localPosition;
+                    Vector3 startPosB = RightHandTransform.localPosition;
+
+                    while (returnElapsed < transitionDuration)
+                    {
+                        returnElapsed += Time.deltaTime;
+                        float t = returnElapsed / transitionDuration;
+                        t = Mathf.Clamp01(t * t * (3f - 2f * t));
+
+                        LeftHandTransform.localPosition = new Vector3(
+                            LeftHandTransform.localPosition.x, Mathf.Lerp(startPosA.y, startA, t), LeftHandTransform.localPosition.z);
+
+                        RightHandTransform.localPosition = new Vector3(
+                            RightHandTransform.localPosition.x, Mathf.Lerp(startPosB.y, startB, t), RightHandTransform.localPosition.z);
+
+                        yield return null;
+                    }
+                    wasMoving = false;
+                }
+                yield return null;
+            }
+        }
+    }
+
+
+
+
 
     /// <summary>
     /// Called when Interact input is started, which passes along if the player hit the left or right mouse button
@@ -103,12 +221,22 @@ public class Hands : MonoBehaviour
                     go.GetComponent<Rigidbody>().AddForce(LeftHandTransform.up + LeftHandTransform.forward * throwStrength, ForceMode.Impulse);
                     pi.SetHeldInHand(false);
                 }
-                foreach (Transform child in LeftHandTransform)
+                for(int i = 0; i < LeftHandTransform.childCount; i++)
                 {
-                    Destroy(child.gameObject);
+                    if(i ==0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        Destroy(LeftHandTransform.transform.GetChild(i).gameObject);
+                    }
                 }
+                //foreach (Transform child in LeftHandTransform)
+                //{
+                //    Destroy(child.gameObject);
+                //}
             }
-
         }
         else
         {
@@ -124,10 +252,21 @@ public class Hands : MonoBehaviour
                     go.GetComponent<Rigidbody>().AddForce(RightHandTransform.up + RightHandTransform.forward * throwStrength, ForceMode.Impulse);
                     pi.SetHeldInHand(false);
                 }
-                foreach (Transform child in RightHandTransform)
+                for (int i = 0; i < LeftHandTransform.childCount; i++)
                 {
-                    Destroy(child.gameObject);
+                    if (i == 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        Destroy(LeftHandTransform.transform.GetChild(i).gameObject);
+                    }
                 }
+                //foreach (Transform child in LeftHandTransform)
+                //{
+                //    Destroy(child.gameObject);
+                //}
             }
         }
     }

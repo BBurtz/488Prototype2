@@ -1,6 +1,10 @@
 using System.Collections;
+using System.Net.NetworkInformation;
+using FMODUnity;
 using Unity.VisualScripting;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
 
 public class ShipHole : InventoryHolder, IInteractable
 {
@@ -10,9 +14,11 @@ public class ShipHole : InventoryHolder, IInteractable
     [SerializeField][ReadOnly] bool patchOnCoolDown;
     [SerializeField][ReadOnly] InventoryItemData HoleItemData;
     [SerializeField][ReadOnly] GameObject HoleObj;
+    private ParticleSystem particleSystem;
     public void Start()
     {
         patchOnCoolDown = false;
+        particleSystem = gameObject.GetComponentInChildren<ParticleSystem>();
     }
     public bool GetIsFlowing()
     { 
@@ -30,10 +36,13 @@ public class ShipHole : InventoryHolder, IInteractable
             HoleObj = Instantiate(HoleItemData.ItemPrefab, PatchLoc.position, Quaternion.identity);
             HoleObj.transform.parent = PatchLoc;
             HoleItemData = HoleObj.GetComponent<PickupInteractable>().GetItem();
+            particleSystem.Stop(false);
+
             if (HoleObj.TryGetComponent(out PickupInteractable pi))
             {
                 pi.DisableRB();
                 pi.SetHeldInHand(true);
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.Repair, this.transform.position);
             }
             StopLeakForTime(HoleItemData.RepairableValue);
         }
@@ -60,6 +69,7 @@ public class ShipHole : InventoryHolder, IInteractable
             HoleItemData = null;
             Destroy(HoleObj);
             HoleObj = null;
+            particleSystem.Play(false);
             StartCoroutine(CoolDown(patchCoolDown));
         }
         else

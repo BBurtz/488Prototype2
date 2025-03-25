@@ -54,7 +54,7 @@ public class PickupInteractable : MonoBehaviour, IInteractable
     }
     public void DisplayInteractUI()
     {
-        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Pickup: " + gameObject.name + " [Click]");
+        CanvasInteractionBehavior.ShowInteractUI?.Invoke("Pickup: " + itemData.DisplayName + " [Click]");
     }
     public void HideInteractUI()
     {

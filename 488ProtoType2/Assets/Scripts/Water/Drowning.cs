@@ -14,6 +14,9 @@ public class Drowning : MonoBehaviour
     private Coroutine drownCoroutine;
     private ShipSink shipSinking;
 
+    [Tooltip("The ending is under Managers. Put that here!")]
+    public GameObject EndScreen;
+
     private void Start()
     {
         shipSinking = FindFirstObjectByType<ShipSink>();
@@ -26,6 +29,7 @@ public class Drowning : MonoBehaviour
     {
         if (drownCoroutine == null)
         {
+            DrownOverlayImage.color = new Color(DrownOverlayImage.color.r, DrownOverlayImage.color.g, DrownOverlayImage.color.b, 0.5f);
             drownCoroutine = StartCoroutine(Drown());
         }
     }
@@ -45,12 +49,13 @@ public class Drowning : MonoBehaviour
             //if player resurfaces
             if (shipSinking.Water.transform.position.y < shipSinking.playerTransform.position.y + shipSinking.DrowningOffset)
             {
+                DrownOverlayImage.color = new Color(DrownOverlayImage.color.r, DrownOverlayImage.color.g, DrownOverlayImage.color.b, 0);
                 StopCoroutine(drownCoroutine);
                 drownCoroutine = null;
             }
 
             //drowning indication
-            float drownOverlayImageAlpha = Mathf.Lerp(0, 1, updatedTime / TimeUntilDrown);
+            float drownOverlayImageAlpha = Mathf.Lerp(0.5f, 1, updatedTime / TimeUntilDrown);
             DrownOverlayImage.color = new Color(DrownOverlayImage.color.r, DrownOverlayImage.color.g, DrownOverlayImage.color.b, Mathf.Pow(drownOverlayImageAlpha, 4));
 
             yield return new WaitForEndOfFrame();
@@ -58,7 +63,11 @@ public class Drowning : MonoBehaviour
 
         //DIE
         Debug.Log("dead");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Cursor.lockState = CursorLockMode.None;
+        EndScreen.SetActive(true);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+
 
         yield return null;
     }

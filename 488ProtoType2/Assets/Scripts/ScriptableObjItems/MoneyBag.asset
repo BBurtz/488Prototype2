@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplaySprite: {fileID: 0}
   MaxStackSize: 1
-  DisplayName: 
+  DisplayName: MoneyBag
   ValuableValue: 10000
   RepairableValue: 15
-  DamageableValue: 1
+  DamageableValue: 12
   ItemPrefab: {fileID: 7730325972970298347, guid: 087622851bfbb994da4a4c03cecbb0ff, type: 3}
   DisplayDescription: 
