@@ -63,7 +63,7 @@ public class Drowning : MonoBehaviour
 
         //DIE
         Debug.Log("dead");
-        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
         EndScreen.SetActive(true);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
