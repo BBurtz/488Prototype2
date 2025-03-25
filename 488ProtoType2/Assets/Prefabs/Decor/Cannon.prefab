@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 488768160538971379}
   - component: {fileID: 358549910938163570}
   - component: {fileID: 5628087854547023089}
+  - component: {fileID: 6323654762089865101}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -163,6 +164,27 @@ MonoBehaviour:
   CannonItemData: {fileID: 0}
   ItemInCannon: {fileID: 0}
   CannonAmmoLoc: {fileID: 5977891756529310450}
+--- !u!65 &6323654762089865101
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495564945335112576}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1.5, z: 1.33}
+  m_Center: {x: 0, y: 0.00000035762787, z: 0}
 --- !u!1 &8997454501347986386
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,10 +209,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8997454501347986386}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000002235174, y: -0, z: -0.17825283, w: 0.9839847}
+  m_LocalRotation: {x: -0.092295796, y: -0.7010574, z: -0.09229578, w: 0.7010575}
   m_LocalPosition: {x: -0.81, y: 0.361, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7842780184097105792}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20.536}
+  m_LocalEulerAnglesHint: {x: -15, y: -90, z: 0}
