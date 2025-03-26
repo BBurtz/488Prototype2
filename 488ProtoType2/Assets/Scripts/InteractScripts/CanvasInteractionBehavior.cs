@@ -19,6 +19,7 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
     public GameObject EndScrene;
     public GameObject PauseMenu;
 
+    public MusicManager MM;
 
     private void OnEnable()
     {
@@ -104,6 +105,11 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
 
     public void Play()
     {
+        if (MM != null)
+        {
+            MM.StopBGM();
+        }
+
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
