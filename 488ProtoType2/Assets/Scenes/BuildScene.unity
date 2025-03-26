@@ -46129,7 +46129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 458662514761069368, guid: f600db8ca4834584bbbc03a745f0754b, type: 3}
       propertyPath: m_Constraints
-      value: 126
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 3158104493696092337, guid: f600db8ca4834584bbbc03a745f0754b, type: 3}
       propertyPath: m_Name
@@ -87462,7 +87462,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 10
   m_CollisionDetection: 0
 --- !u!23 &2026859779
 MeshRenderer:
@@ -92292,7 +92292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5853526180366107926, guid: 3de17ed137cb6c2488f887ebb48c1b32, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9026403928994143201, guid: 3de17ed137cb6c2488f887ebb48c1b32, type: 3}
       propertyPath: m_IsActive
