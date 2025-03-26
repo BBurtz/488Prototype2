@@ -17,9 +17,13 @@ public class Drowning : MonoBehaviour
     [Tooltip("The ending is under Managers. Put that here!")]
     public GameObject EndScreen;
 
+    private MusicManager MM;
+
     private void Start()
     {
         shipSinking = FindFirstObjectByType<ShipSink>();
+
+        MM = GetComponent<MusicManager>();
     }
 
     /// <summary>
@@ -62,6 +66,7 @@ public class Drowning : MonoBehaviour
         }
 
         //DIE
+        MM.StopBGM();
         Debug.Log("dead");
         Cursor.lockState = CursorLockMode.None;
         EndScreen.SetActive(true);

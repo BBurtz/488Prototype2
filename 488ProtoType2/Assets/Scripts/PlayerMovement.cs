@@ -56,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
     private EventInstance walkSFX;
 
+    private MusicManager MM;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -88,7 +90,8 @@ public class PlayerMovement : MonoBehaviour
 
         //audio
         walkSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Footsteps);
-        
+
+        MM = GetComponent<MusicManager>();
     }
     private void Update()
     {
@@ -198,6 +201,8 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             PauseAction.started -= pause;
+
+            MM.StopBGM();
         }
     }
 
