@@ -226,7 +226,7 @@ public class Lootbox : MonoBehaviour, IInteractable
     public void DisplayInteractUI()
     {
 
-        if(!isOpen || (isOpen && instantiatedObj != null))
+        if(!isOpen)
         {
 
             CanvasInteractionBehavior.ShowInteractUI?.Invoke("Open Chest [Click]");
@@ -235,7 +235,13 @@ public class Lootbox : MonoBehaviour, IInteractable
         else if(isOpen && instantiatedObj == null)
         {
 
-            CanvasInteractionBehavior.ShowInteractUI?.Invoke("Item Already Picked!");
+            CanvasInteractionBehavior.ShowInteractUI?.Invoke("Nothing's Here!");
+
+        }
+        else if (isOpen && instantiatedObj != null)
+        {
+
+            CanvasInteractionBehavior.ShowInteractUI?.Invoke("Reroll Loot [Click]");
 
         }
 
