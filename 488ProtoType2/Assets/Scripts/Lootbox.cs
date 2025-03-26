@@ -31,8 +31,17 @@ public class Lootbox : MonoBehaviour, IInteractable
     {
         if (!isOpen)
         {
+
+            //i'm so fucking sorry
             isOpen = true;
+            treasureAlreadyActive = false;
+            treasureAlreadyActiveAgain = false;
+            toolsAlreadyActive = false;
+            toolsAlreadyActiveAgain = false;
+            itemsFromLists.Clear();
+
             GetComponent<Animator>().SetBool("IsOpen", true);
+
 
             StopCoroutine(WaitForPickup());
 
