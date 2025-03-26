@@ -18,6 +18,8 @@ public class Timer : Singleton<Timer>
     //SORRY
     public GameObject EndScreen;
 
+    public TMPro.TMP_Text WarningText;
+
     private void OnEnable()
     {
         GameEnd += GameEndedDebug;
@@ -61,12 +63,21 @@ public class Timer : Singleton<Timer>
             {
                 if (tickSpeedDuration <= 0)
                 {
+                    WarningText.color = Color.red;
                     tickSpeedDuration = 0;
                     currentTickSpeed = baseTickSpeed;
                     currentTime += Time.deltaTime * currentTickSpeed;
                 }
                 else
                 {
+                    if(currentTickSpeed == baseTickSpeed / 2)
+                    {
+                        WarningText.color = Color.yellow;
+                    }
+                    if(currentTickSpeed > baseTickSpeed / 2)
+                    {
+                        WarningText.color = Color.green;
+                    }
                     tickSpeedDuration -= Time.deltaTime;
                 }
                 yield return null;

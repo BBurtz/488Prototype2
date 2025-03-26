@@ -217,9 +217,9 @@ public class Hands : MonoBehaviour
     {
         if (leftHandToDrop)
         {
-            float sound = checkItemSFX(leftHand.GetInventoryItemList()[0].DisplayName);
-            dropSFX.setParameterByName("ItemSheet", sound);
-            dropSFX.start();
+            //float sound = checkItemSFX(leftHand.GetInventoryItemList()[0].DisplayName);
+            //dropSFX.setParameterByName("ItemSheet", sound);
+            //dropSFX.start();
 
             InventoryItemData droppedItem = null;
             leftHand.RemoveFromInventory(leftHand.GetInventoryItemList()[0], 1, true, out droppedItem, out _);
@@ -264,7 +264,7 @@ public class Hands : MonoBehaviour
                     go.GetComponent<Rigidbody>().AddForce(RightHandTransform.up + RightHandTransform.forward * throwStrength, ForceMode.Impulse);
                     pi.SetHeldInHand(false);
                 }
-                for (int i = 0; i < LeftHandTransform.childCount; i++)
+                for (int i = 0; i < RightHandTransform.childCount; i++)
                 {
                     if (i == 0)
                     {
@@ -272,7 +272,7 @@ public class Hands : MonoBehaviour
                     }
                     else
                     {
-                        Destroy(LeftHandTransform.transform.GetChild(i).gameObject);
+                        Destroy(RightHandTransform.transform.GetChild(i).gameObject);
                     }
                 }
                 //foreach (Transform child in LeftHandTransform)
