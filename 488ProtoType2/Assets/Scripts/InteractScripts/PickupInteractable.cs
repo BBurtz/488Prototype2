@@ -48,7 +48,7 @@ public class PickupInteractable : MonoBehaviour, IInteractable
         var handscript = player.GetComponent<Hands>();
         if (handscript != null)
         {
-            handscript.AddItem(itemData, player.GetComponent<Hands>().GetTargetedInventory());
+            handscript.AddItem(itemData, player.GetComponent<Hands>().GetTargetedInventory(), this.transform.lossyScale);
             Destroy(gameObject);
         }
     }

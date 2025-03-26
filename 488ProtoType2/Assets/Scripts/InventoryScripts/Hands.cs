@@ -204,7 +204,6 @@ public class Hands : MonoBehaviour
     {
         GameObject clone = Instantiate(pickup, hand.position, Quaternion.identity); // Create clone
         clone.transform.parent = hand.transform;
-        originalItemSize = pickup.transform.lossyScale;
         clone.transform.localScale = pickup.transform.localScale * Handsize;
         clone.transform.rotation = hand.rotation; //Quaternion.identity;
         clone.GetComponent<PickupInteractable>().DisableRB(); // Ensure RB is disabled
@@ -287,8 +286,10 @@ public class Hands : MonoBehaviour
         }
     }
 
-    public void AddItem(InventoryItemData data, InventorySystem handToAddTo)
+    public void AddItem(InventoryItemData data, InventorySystem handToAddTo, Vector3 itemScale)
     {
+        originalItemSize = itemScale;
+
         if (handToAddTo.AddToInventory(data, 1, out _))
         {
             ShowObjectInHand(data.ItemPrefab, leftHandTargeted? LeftHandTransform : RightHandTransform);
