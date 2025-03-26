@@ -217,14 +217,14 @@ public class Hands : MonoBehaviour
     {
         if (leftHandToDrop)
         {
-            //float sound = checkItemSFX(leftHand.GetInventoryItemList()[0].DisplayName);
-            //dropSFX.setParameterByName("ItemSheet", sound);
-            //dropSFX.start();
-
             InventoryItemData droppedItem = null;
             leftHand.RemoveFromInventory(leftHand.GetInventoryItemList()[0], 1, true, out droppedItem, out _);
             if(droppedItem != null)
             {
+                float sound = checkItemSFX(droppedItem.DisplayName);
+                dropSFX.setParameterByName("ItemSheet", sound);
+                dropSFX.start();
+
                 var go = Instantiate(droppedItem.ItemPrefab, LeftHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
                 go.transform.localScale = droppedItem.ItemPrefab.transform.lossyScale;
@@ -257,6 +257,10 @@ public class Hands : MonoBehaviour
             rightHand.RemoveFromInventory(rightHand.GetInventoryItemList()[0], 1, true, out droppedItem, out _);
             if(droppedItem != null)
             {
+                float sound = checkItemSFX(droppedItem.DisplayName);
+                dropSFX.setParameterByName("ItemSheet", sound);
+                dropSFX.start();
+
                 var go = Instantiate(droppedItem.ItemPrefab, RightHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
                 go.transform.localScale = droppedItem.ItemPrefab.transform.lossyScale;
