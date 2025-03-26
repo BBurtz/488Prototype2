@@ -122,6 +122,11 @@ public class CanvasInteractionBehavior : Singleton<CanvasInteractionBehavior>
 
     public void Back()
     {
+        if (MM != null)
+        {
+            MM.StopBGM();
+        }
+
         SceneManager.LoadScene(0);
         Time.timeScale = 1.0f;
     }

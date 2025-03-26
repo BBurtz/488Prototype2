@@ -23,6 +23,11 @@ public class MainMenu : MonoBehaviour
 
     public void Back()
     {
+        if (MM != null)
+        {
+            MM.StopBGM();
+        }
+
         SceneManager.LoadScene(0);
         Time.timeScale = 1.0f;
     }

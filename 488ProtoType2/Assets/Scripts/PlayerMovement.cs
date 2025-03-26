@@ -143,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
     private void pause(InputAction.CallbackContext context)
     {
         CanvasInteractionBehavior.PauseToggle?.Invoke();
+        walkSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     private void OnDisable()
@@ -242,6 +243,11 @@ public class PlayerMovement : MonoBehaviour
         {
             walkSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
+    }
+
+    private void OnDestroy ( )
+    {
+        walkSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     /// <summary>
