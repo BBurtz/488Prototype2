@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 7247760847745409426}
   - component: {fileID: 7458709450102895627}
   - component: {fileID: 8673352841250794437}
+  - component: {fileID: 3254495613554358344}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -688,6 +689,18 @@ MonoBehaviour:
   handCycleSpeed: 30
   moveThreshold: 0.5
   maxDeviation: 0.25
+--- !u!114 &3254495613554358344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351218328094639674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ce3d6ba217031a4b84e2e7abd6c599c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3581218797243447920
 GameObject:
   m_ObjectHideFlags: 0

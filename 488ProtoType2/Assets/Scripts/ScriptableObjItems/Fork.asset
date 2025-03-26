@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxStackSize: 1
   DisplayName: Fork
   ValuableValue: 1500
-  RepairableValue: 5
+  RepairableValue: 4
   DamageableValue: 20
   ItemPrefab: {fileID: 564359975530410553, guid: 8f1910c4e2b2d194a8609ccece382c93, type: 3}
   DisplayDescription: 

@@ -3,8 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public MusicManager MM;
     public void Play()
     {
+        if (MM != null)
+        {
+            MM.StopBGM();
+        }
+
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
