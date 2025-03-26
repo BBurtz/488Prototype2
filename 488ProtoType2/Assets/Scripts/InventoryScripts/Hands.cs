@@ -217,9 +217,9 @@ public class Hands : MonoBehaviour
     {
         if (leftHandToDrop)
         {
-            float sound = checkItemSFX(leftHand.GetInventoryItemList()[0].DisplayName);
-            dropSFX.setParameterByName("ItemSheet", sound);
-            dropSFX.start();
+            //float sound = checkItemSFX(leftHand.GetInventoryItemList()[0].DisplayName);
+            //dropSFX.setParameterByName("ItemSheet", sound);
+            //dropSFX.start();
 
             InventoryItemData droppedItem = null;
             leftHand.RemoveFromInventory(leftHand.GetInventoryItemList()[0], 1, true, out droppedItem, out _);

@@ -46,7 +46,7 @@ public class ScoringSystem : InventoryHolder, IInteractable
 
     private void UpdateText()
     {
-        ScoringText.text = "You Made It Out With $ " + score;
+        ScoringText.text = "$ " + score;
         InGameText.text = "$ " + score;
     }
 
