@@ -49730,6 +49730,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 154
       objectReference: {fileID: 0}
+    - target: {fileID: 5319104135210593570, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f7a6e493ed7f23644b805603a0def6f0, type: 3}
     - target: {fileID: 5701625834629504832, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
       propertyPath: m_SizeDelta.x
       value: 220
@@ -49744,7 +49748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5701625834629504832, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -317.2
+      value: -481.00003
       objectReference: {fileID: 0}
     - target: {fileID: 6567903142939155632, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
       propertyPath: m_Sprite
@@ -49768,7 +49772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6919738575016977237, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -317.2
+      value: -481
       objectReference: {fileID: 0}
     - target: {fileID: 7126724852619045503, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -49802,10 +49806,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 2104532923572521393, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2242114904895149365, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 1001238119130981279, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1282314893}
-    - targetCorrespondingSourceObject: {fileID: 2242114904895149365, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 1001238119130981279, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2064517872}
     m_AddedComponents: []
@@ -49813,11 +49817,6 @@ PrefabInstance:
 --- !u!4 &1165251347 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1001238119130981279, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
-  m_PrefabInstance: {fileID: 1165251346}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &1165251348 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2242114904895149365, guid: 024fb6c84d88110429964428dfc89d55, type: 3}
   m_PrefabInstance: {fileID: 1165251346}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1165251349 stripped
@@ -55777,7 +55776,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1165251348}
+  m_Father: {fileID: 1165251347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -88484,7 +88483,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1165251348}
+  m_Father: {fileID: 1165251347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
