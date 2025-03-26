@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private EventInstance walkSFX;
 
+    private EventInstance BGM;
 
 
     private void OnTriggerEnter(Collider other)
@@ -88,6 +89,9 @@ public class PlayerMovement : MonoBehaviour
 
         //audio
         walkSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Footsteps);
+        BGM = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Footsteps);
+
+        BGM.start();
     }
     private void Update()
     {
