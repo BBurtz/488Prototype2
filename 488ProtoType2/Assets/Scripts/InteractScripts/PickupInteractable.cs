@@ -81,7 +81,7 @@ public class PickupInteractable : MonoBehaviour, IInteractable
     /// </summary>
     public void EnableRB()
     {
-        transform.localScale = defaultScale;
+        //transform.localScale = defaultScale;
 
         if (rb == null)
         {

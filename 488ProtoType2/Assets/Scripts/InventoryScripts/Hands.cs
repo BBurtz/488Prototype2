@@ -32,6 +32,7 @@ public class Hands : MonoBehaviour
     private Vector3 leftHandStartPos, rightHandStartPos;
     private Rigidbody _playerRb;
     private PlayerMovement _player;
+    private Vector3 originalItemSize;
 
     private EventInstance grabSFX;
     private EventInstance dropSFX;
@@ -203,6 +204,7 @@ public class Hands : MonoBehaviour
     {
         GameObject clone = Instantiate(pickup, hand.position, Quaternion.identity); // Create clone
         clone.transform.parent = hand.transform;
+        originalItemSize = pickup.transform.lossyScale;
         clone.transform.localScale = pickup.transform.localScale * Handsize;
         clone.transform.rotation = hand.rotation; //Quaternion.identity;
         clone.GetComponent<PickupInteractable>().DisableRB(); // Ensure RB is disabled
@@ -227,6 +229,7 @@ public class Hands : MonoBehaviour
             {
                 var go = Instantiate(droppedItem.ItemPrefab, LeftHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
+                go.transform.localScale = originalItemSize;
                 if (go.TryGetComponent(out PickupInteractable pi))
                 {
                     pi.EnableRB();
@@ -258,6 +261,7 @@ public class Hands : MonoBehaviour
             {
                 var go = Instantiate(droppedItem.ItemPrefab, RightHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
+                go.transform.localScale = originalItemSize;
                 if (go.TryGetComponent(out PickupInteractable pi))
                 {
                     pi.EnableRB();
