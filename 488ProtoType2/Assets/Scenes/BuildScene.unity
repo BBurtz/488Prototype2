@@ -78732,6 +78732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3479052355349384131, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 1843981446}
     - target: {fileID: 7458709450102895627, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
       propertyPath: EndScreen
       value: 
@@ -78785,6 +78789,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
+--- !u!1 &1843981446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3351218328094639674, guid: 67f5ef5f1372c504b90cdbbd16d8293a, type: 3}
+  m_PrefabInstance: {fileID: 1843981445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1845688222
 PrefabInstance:
   m_ObjectHideFlags: 0

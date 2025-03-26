@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using FMOD.Studio;
+using FMODUnity;
 
 public class Hands : MonoBehaviour
 {
@@ -31,6 +33,9 @@ public class Hands : MonoBehaviour
     private Rigidbody _playerRb;
     private PlayerMovement _player;
 
+    private EventInstance grabSFX;
+    private EventInstance dropSFX;
+
     private void Start()
     {
         leftHand = new InventorySystem(1);
@@ -40,6 +45,9 @@ public class Hands : MonoBehaviour
         leftHandCalled.AddListener(InteractPressed);
         _player = GetComponent<PlayerMovement>();
         _playerRb = GetComponent<Rigidbody>();
+
+        grabSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Pickup);
+        dropSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Drop);
 
         leftHandStartPos = LeftHandTransform.localPosition;
         rightHandStartPos = RightHandTransform.localPosition;
@@ -209,6 +217,10 @@ public class Hands : MonoBehaviour
     {
         if (leftHandToDrop)
         {
+            float sound = checkItemSFX(leftHand.GetInventoryItemList()[0].DisplayName);
+            dropSFX.setParameterByName("ItemSheet", sound);
+            dropSFX.start();
+
             InventoryItemData droppedItem = null;
             leftHand.RemoveFromInventory(leftHand.GetInventoryItemList()[0], 1, true, out droppedItem, out _);
             if(droppedItem != null)
@@ -276,11 +288,20 @@ public class Hands : MonoBehaviour
         if (handToAddTo.AddToInventory(data, 1, out _))
         {
             ShowObjectInHand(data.ItemPrefab, leftHandTargeted? LeftHandTransform : RightHandTransform);
+
+            float sound = checkItemSFX(data.DisplayName);
+            grabSFX.setParameterByName("ItemSheet", sound);
+            grabSFX.start();
+
             return;
         }
         else //was adding unsuccessful? (hand full?)
         {
             DropObject(leftHandTargeted);
+
+            /*float sound = checkItemSFX(data.DisplayName);
+            dropSFX.setParameterByName("ItemSheet", sound);
+            dropSFX.start();*/
 
             handToAddTo.AddToInventory(data, 1, out _);
 
@@ -368,5 +389,45 @@ public class Hands : MonoBehaviour
         {
             _interactable.CancelInteract();
         }
+    }
+
+    private float checkItemSFX (string name)
+    {
+        float sound = 0;
+        switch (name)
+        {
+            case "WoodenPlank":
+                sound = 0;
+                break;
+            case "Map":
+                sound = 1;
+                break;
+            case "RumBottle":
+                sound = 2;
+                break;
+            case "Beachball":
+                sound = 3;
+                break;
+            case "Diamond":
+                sound = 4;
+                break;
+            case "MoneyBag":
+                sound = 5;
+                break;
+            case "Fork":
+                sound = 6;
+                break;
+            case "Cannonball":
+                sound = 7;
+                break;
+        }
+        return sound;
+    }
+
+    //just to update sfx to player location
+    private void Update()
+    {
+        grabSFX.set3DAttributes(RuntimeUtils.To3DAttributes(_player.transform, _playerRb));
+        dropSFX.set3DAttributes(RuntimeUtils.To3DAttributes(_player.transform, _playerRb));
     }
 }
