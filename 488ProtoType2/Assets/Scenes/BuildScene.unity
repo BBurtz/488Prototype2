@@ -4403,6 +4403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Treasure_Chest (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4472765398239301679, guid: 3f762fe46c31f5e469c3d0f1d1918aaa, type: 3}
+      propertyPath: m_Constraints
+      value: 122
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -38308,7 +38312,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 17269315336348839, guid: 95116ed61d7548a49b3327c7cee0bdd7, type: 3}
       propertyPath: m_Constraints
-      value: 126
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2820057200480230558, guid: 95116ed61d7548a49b3327c7cee0bdd7, type: 3}
       propertyPath: m_Name
@@ -39607,7 +39611,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 17269315336348839, guid: 95116ed61d7548a49b3327c7cee0bdd7, type: 3}
       propertyPath: m_Constraints
-      value: 126
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2820057200480230558, guid: 95116ed61d7548a49b3327c7cee0bdd7, type: 3}
       propertyPath: m_Name
@@ -77893,7 +77897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6821569918568083259, guid: f04400385fc5db14480e1b4750768c3d, type: 3}
       propertyPath: m_Constraints
-      value: 126
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 7687614125215785567, guid: f04400385fc5db14480e1b4750768c3d, type: 3}
       propertyPath: m_LocalScale.x
@@ -79902,7 +79906,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 17269315336348839, guid: 95116ed61d7548a49b3327c7cee0bdd7, type: 3}
       propertyPath: m_Constraints
-      value: 126
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 2820057200480230558, guid: 95116ed61d7548a49b3327c7cee0bdd7, type: 3}
       propertyPath: m_Name
@@ -93571,7 +93575,7 @@ Transform:
   m_GameObject: {fileID: 4809209838529623354}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.360653, y: 0.013336182, z: 5.2280655}
+  m_LocalPosition: {x: 2.360653, y: -0.008, z: 5.2280655}
   m_LocalScale: {x: 3.3236966, y: 1.06287, z: 15.504618}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -226387,7 +226391,7 @@ Transform:
   m_GameObject: {fileID: 3589617543764347714}
   serializedVersion: 2
   m_LocalRotation: {x: -0.2113091, y: 0.7848855, z: -0.36599812, w: 0.4531539}
-  m_LocalPosition: {x: -1929.0398, y: 1287.9031, z: 769.049}
+  m_LocalPosition: {x: -1929.0398, y: 1273, z: 786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -229955,7 +229959,7 @@ Transform:
   m_GameObject: {fileID: 4345108144087867030}
   serializedVersion: 2
   m_LocalRotation: {x: -0.2113091, y: 0.7848855, z: -0.36599812, w: 0.4531539}
-  m_LocalPosition: {x: -1270.0399, y: 2162.2827, z: 1502.7407}
+  m_LocalPosition: {x: -1273, y: 2144, z: 1517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -233549,7 +233553,7 @@ Transform:
   m_GameObject: {fileID: 4065150342500710351}
   serializedVersion: 2
   m_LocalRotation: {x: -0.36599812, y: -0.4531539, z: 0.2113091, w: 0.7848855}
-  m_LocalPosition: {x: 2183.9995, y: -533.8485, z: -759.5824}
+  m_LocalPosition: {x: 2180, y: -540, z: -764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -234380,7 +234384,7 @@ Transform:
   m_GameObject: {fileID: 1715123002634882092}
   serializedVersion: 2
   m_LocalRotation: {x: -0.36599812, y: -0.4531539, z: 0.2113091, w: 0.7848855}
-  m_LocalPosition: {x: 2853, y: 354, z: -15}
+  m_LocalPosition: {x: 2845, y: 343, z: -24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243333,7 +243337,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!4 &8013688720984541469
 Transform:
