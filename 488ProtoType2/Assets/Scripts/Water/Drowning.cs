@@ -21,6 +21,7 @@ public class Drowning : MonoBehaviour
 
     private void Start()
     {
+
         shipSinking = FindFirstObjectByType<ShipSink>();
 
         MM = GetComponent<MusicManager>();
@@ -69,6 +70,7 @@ public class Drowning : MonoBehaviour
         MM.StopBGM();
         Debug.Log("dead");
         Cursor.lockState = CursorLockMode.None;
+        GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
         EndScreen.SetActive(true);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
