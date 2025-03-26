@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction RightAction;
     private InputAction PauseAction;
 
-    private bool grounded;
+    public bool grounded;
 
     [SerializeField] private LayerMask whatIsGround;
 
@@ -167,10 +167,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         if (flatVel.magnitude > moveSpeed)
         {
-            UpdateWalkSFX();
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
         }
+        UpdateWalkSFX();
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -223,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateWalkSFX()
     {
-        if ((rb.linearVelocity.x > 0 || rb.linearVelocity.z > 0) && grounded)
+        if ((rb.linearVelocity.x > 0.01 || rb.linearVelocity.z > 0.01) && grounded)
         {
             PLAYBACK_STATE playbackState;
             walkSFX.getPlaybackState(out playbackState);

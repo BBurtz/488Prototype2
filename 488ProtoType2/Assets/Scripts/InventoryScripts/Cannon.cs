@@ -57,6 +57,7 @@ public class Cannon : InventoryHolder, IInteractable
             }
             //GetComponent<Rigidbody>().AddForce(-transform.forward * cannonPower / 2); //recoil
             //GetComponent<Rigidbody>().AddForce(transform.up * cannonPower / 2); //recoil
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Cannon, this.transform.position);
         }
         else
         {
