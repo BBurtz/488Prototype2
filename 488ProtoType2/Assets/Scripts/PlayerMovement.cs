@@ -202,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             PauseAction.started -= pause;
+            MoveAction.performed -= move;
 
             MM.StopBGM();
         }
