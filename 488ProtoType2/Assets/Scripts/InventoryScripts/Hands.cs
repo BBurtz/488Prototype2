@@ -32,7 +32,6 @@ public class Hands : MonoBehaviour
     private Vector3 leftHandStartPos, rightHandStartPos;
     private Rigidbody _playerRb;
     private PlayerMovement _player;
-    private Vector3 originalItemSize;
 
     private EventInstance grabSFX;
     private EventInstance dropSFX;
@@ -218,17 +217,17 @@ public class Hands : MonoBehaviour
     {
         if (leftHandToDrop)
         {
-            //float sound = checkItemSFX(leftHand.GetInventoryItemList()[0].DisplayName);
-            //dropSFX.setParameterByName("ItemSheet", sound);
-            //dropSFX.start();
-
             InventoryItemData droppedItem = null;
             leftHand.RemoveFromInventory(leftHand.GetInventoryItemList()[0], 1, true, out droppedItem, out _);
             if(droppedItem != null)
             {
+                float sound = checkItemSFX(droppedItem.DisplayName);
+                dropSFX.setParameterByName("ItemSheet", sound);
+                dropSFX.start();
+
                 var go = Instantiate(droppedItem.ItemPrefab, LeftHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
-                go.transform.localScale = originalItemSize;
+                go.transform.localScale = droppedItem.ItemPrefab.transform.lossyScale;
                 if (go.TryGetComponent(out PickupInteractable pi))
                 {
                     pi.EnableRB();
@@ -258,9 +257,13 @@ public class Hands : MonoBehaviour
             rightHand.RemoveFromInventory(rightHand.GetInventoryItemList()[0], 1, true, out droppedItem, out _);
             if(droppedItem != null)
             {
+                float sound = checkItemSFX(droppedItem.DisplayName);
+                dropSFX.setParameterByName("ItemSheet", sound);
+                dropSFX.start();
+
                 var go = Instantiate(droppedItem.ItemPrefab, RightHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
-                go.transform.localScale = originalItemSize;
+                go.transform.localScale = droppedItem.ItemPrefab.transform.lossyScale;
                 if (go.TryGetComponent(out PickupInteractable pi))
                 {
                     pi.EnableRB();
@@ -288,7 +291,6 @@ public class Hands : MonoBehaviour
 
     public void AddItem(InventoryItemData data, InventorySystem handToAddTo, Vector3 itemScale)
     {
-        originalItemSize = itemScale;
 
         if (handToAddTo.AddToInventory(data, 1, out _))
         {
@@ -309,7 +311,7 @@ public class Hands : MonoBehaviour
             dropSFX.start();*/
 
             handToAddTo.AddToInventory(data, 1, out _);
-
+            ShowObjectInHand(data.ItemPrefab, leftHandTargeted ? LeftHandTransform : RightHandTransform);
             //PickupInteractable.CreateItemObject(droppedItem, LeftHandTransform.position);
         }
     }

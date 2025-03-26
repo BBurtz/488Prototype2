@@ -56,8 +56,6 @@ public class PlayerMovement : MonoBehaviour
 
     private EventInstance walkSFX;
 
-    private EventInstance BGM;
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -84,14 +82,13 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         //boxCreationDestruction = FindObjectOfType<BoxCreationDestruction>();
         Cursor.lockState = CursorLockMode.Locked;
 
         //audio
         walkSFX = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Footsteps);
-        BGM = AudioManager.instance.CreateEventInstance(FMODEvents.instance.Footsteps);
-
-        BGM.start();
+        
     }
     private void Update()
     {
@@ -227,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateWalkSFX()
     {
-        if ((rb.linearVelocity.x > 0.01 || rb.linearVelocity.z > 0.01) && grounded)
+        if (CurrentlyMoving && grounded)
         {
             PLAYBACK_STATE playbackState;
             walkSFX.getPlaybackState(out playbackState);
