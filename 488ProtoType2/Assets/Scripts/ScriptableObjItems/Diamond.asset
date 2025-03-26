@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxStackSize: 1
   DisplayName: Diamond
   ValuableValue: 25000
-  RepairableValue: 10
+  RepairableValue: 8
   DamageableValue: 25
   ItemPrefab: {fileID: 5613676653529230931, guid: f950655350a2c9e4986e724e990ac242, type: 3}
   DisplayDescription: 

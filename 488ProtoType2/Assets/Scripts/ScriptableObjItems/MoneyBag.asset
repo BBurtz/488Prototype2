@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxStackSize: 1
   DisplayName: MoneyBag
   ValuableValue: 10000
-  RepairableValue: 15
+  RepairableValue: 12
   DamageableValue: 12
   ItemPrefab: {fileID: 7730325972970298347, guid: 087622851bfbb994da4a4c03cecbb0ff, type: 3}
   DisplayDescription: 

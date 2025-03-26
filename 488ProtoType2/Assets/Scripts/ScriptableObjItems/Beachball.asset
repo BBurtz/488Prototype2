@@ -16,7 +16,7 @@ MonoBehaviour:
   MaxStackSize: 1
   DisplayName: BeachBall
   ValuableValue: 750
-  RepairableValue: 12
+  RepairableValue: 5
   DamageableValue: 20
   ItemPrefab: {fileID: 7958113460269921321, guid: 5db465d5a7253784bb032acc994e9079, type: 3}
   DisplayDescription: 
