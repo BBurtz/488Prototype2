@@ -102,6 +102,11 @@ public class PlayerMovement : MonoBehaviour
             print("HERE");
             Application.Quit();
         }
+
+        if(!grounded)
+        {
+            rb.AddForce(0, -4, 0, ForceMode.Force);
+        }
     }
 
     private void OnEnable()

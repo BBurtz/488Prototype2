@@ -32,6 +32,7 @@ public class Hands : MonoBehaviour
     private Vector3 leftHandStartPos, rightHandStartPos;
     private Rigidbody _playerRb;
     private PlayerMovement _player;
+    private Vector3 originalItemSize;
 
     private EventInstance grabSFX;
     private EventInstance dropSFX;
@@ -217,9 +218,9 @@ public class Hands : MonoBehaviour
     {
         if (leftHandToDrop)
         {
-            float sound = checkItemSFX(leftHand.GetInventoryItemList()[0].DisplayName);
-            dropSFX.setParameterByName("ItemSheet", sound);
-            dropSFX.start();
+            //float sound = checkItemSFX(leftHand.GetInventoryItemList()[0].DisplayName);
+            //dropSFX.setParameterByName("ItemSheet", sound);
+            //dropSFX.start();
 
             InventoryItemData droppedItem = null;
             leftHand.RemoveFromInventory(leftHand.GetInventoryItemList()[0], 1, true, out droppedItem, out _);
@@ -227,6 +228,7 @@ public class Hands : MonoBehaviour
             {
                 var go = Instantiate(droppedItem.ItemPrefab, LeftHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
+                go.transform.localScale = originalItemSize;
                 if (go.TryGetComponent(out PickupInteractable pi))
                 {
                     pi.EnableRB();
@@ -258,13 +260,14 @@ public class Hands : MonoBehaviour
             {
                 var go = Instantiate(droppedItem.ItemPrefab, RightHandTransform.position, Quaternion.identity);
                 go.transform.parent = null;
+                go.transform.localScale = originalItemSize;
                 if (go.TryGetComponent(out PickupInteractable pi))
                 {
                     pi.EnableRB();
                     go.GetComponent<Rigidbody>().AddForce(RightHandTransform.up + RightHandTransform.forward * throwStrength, ForceMode.Impulse);
                     pi.SetHeldInHand(false);
                 }
-                for (int i = 0; i < LeftHandTransform.childCount; i++)
+                for (int i = 0; i < RightHandTransform.childCount; i++)
                 {
                     if (i == 0)
                     {
@@ -272,7 +275,7 @@ public class Hands : MonoBehaviour
                     }
                     else
                     {
-                        Destroy(LeftHandTransform.transform.GetChild(i).gameObject);
+                        Destroy(RightHandTransform.transform.GetChild(i).gameObject);
                     }
                 }
                 //foreach (Transform child in LeftHandTransform)
@@ -283,8 +286,10 @@ public class Hands : MonoBehaviour
         }
     }
 
-    public void AddItem(InventoryItemData data, InventorySystem handToAddTo)
+    public void AddItem(InventoryItemData data, InventorySystem handToAddTo, Vector3 itemScale)
     {
+        originalItemSize = itemScale;
+
         if (handToAddTo.AddToInventory(data, 1, out _))
         {
             ShowObjectInHand(data.ItemPrefab, leftHandTargeted? LeftHandTransform : RightHandTransform);
