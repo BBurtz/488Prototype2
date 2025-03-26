@@ -215,6 +215,8 @@ public class PlayerMovement : MonoBehaviour
         CurrentlyMoving = false;
         MoveVal = new Vector3(0, rb.linearVelocity.y, 0);
         rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+
+        walkSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     private void move(InputAction.CallbackContext context)
