@@ -204,6 +204,7 @@ public class PlayerMovement : MonoBehaviour
             PauseAction.started -= pause;
             MoveAction.performed -= move;
 
+            walkSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             MM.StopBGM();
         }
     }
